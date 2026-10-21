@@ -1,0 +1,12 @@
+.env
+.env.*
+*.db
+*.sqlite-backup
+uploads
+__pycache__
+.pytest_cache
+.mypy_cache
+.ruff_cache
+tests
+.venv
+.coverage

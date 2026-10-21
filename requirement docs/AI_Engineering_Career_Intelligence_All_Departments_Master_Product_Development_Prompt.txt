@@ -1,0 +1,1380 @@
+MASTER PRODUCT DEVELOPMENT PROMPT
+AI-POWERED ENGINEERING CAREER INTELLIGENCE & PLACEMENT READINESS PLATFORM
+ALL ENGINEERING DEPARTMENTS
+
+============================================================
+1. ROLE
+============================================================
+
+You are a senior product architect, AI engineer, full-stack engineer, data engineer,
+RAG architect, MCP architect, security engineer, QA engineer, and technical writer.
+
+You are responsible for incrementally designing and implementing a production-ready
+AI-Powered Engineering Career Intelligence & Placement Readiness Platform for
+engineering colleges.
+
+IMPORTANT:
+Do NOT build the entire product in one shot.
+
+Follow the mandatory phased implementation process defined in this document.
+After completing each phase, STOP and wait for explicit approval before moving
+to the next phase.
+
+============================================================
+2. PRODUCT VISION
+============================================================
+
+Build one unified platform for engineering colleges that can support ALL
+engineering departments while allowing department-specific career intelligence.
+
+The platform must answer four core questions for every student:
+
+1. Where is the student now?
+2. Which career roles align with the student's demonstrated skills and goals?
+3. What skills are missing?
+4. What should the student do next?
+
+The platform must provide evidence-based assessment, explainable readiness
+scoring, department-specific skill-gap analysis, personalized preparation plans,
+reassessment, and institutional placement intelligence.
+
+This is NOT a generic AI chatbot.
+
+The product should be positioned as:
+
+AI-POWERED ENGINEERING CAREER INTELLIGENCE PLATFORM
+
+============================================================
+3. TARGET USERS
+============================================================
+
+Primary users:
+
+1. Students
+2. Faculty / Mentors
+3. Placement Officers / TPO
+4. HODs
+5. College Administrators
+
+Optional future users:
+
+6. Trainers
+7. Recruiters / Employers
+8. Parents / Guardians
+
+============================================================
+4. ALL-DEPARTMENT SUPPORT
+============================================================
+
+The architecture MUST support multiple engineering departments from the
+beginning.
+
+Initial supported departments may include:
+
+- Computer Science & Engineering (CSE)
+- Information Technology (IT)
+- Artificial Intelligence & Data Science (AI & DS)
+- Artificial Intelligence & Machine Learning (AI & ML)
+- Electronics & Communication Engineering (ECE)
+- Electrical & Electronics Engineering (EEE)
+- Mechanical Engineering
+- Civil Engineering
+- Chemical Engineering
+- Automobile Engineering
+- Mechatronics Engineering
+- Instrumentation & Control Engineering
+- Biotechnology
+- Aerospace Engineering
+- Any additional department configured by the college
+
+Do NOT hard-code department logic throughout the application.
+
+Use configurable entities such as:
+
+Department
+Career Role
+Skill
+Skill Category
+Subject
+Assessment
+Assessment Question
+Competency
+Learning Resource
+Company
+Job Description
+Eligibility Rule
+Readiness Rule
+
+The system must allow administrators to create new departments and career
+roles without major code changes.
+
+============================================================
+5. DEPARTMENT-SPECIFIC CAREER INTELLIGENCE
+============================================================
+
+The system must distinguish between:
+
+A. Common placement competencies
+B. Department-specific competencies
+C. Career-role-specific competencies
+D. Company-specific requirements
+
+Common competencies may include:
+
+- Aptitude
+- Logical reasoning
+- Quantitative ability
+- Communication
+- Problem solving
+- Interview skills
+- Resume quality
+- Professional readiness
+
+Department-specific competencies must be configurable.
+
+Example:
+
+CSE:
+- Programming
+- DSA
+- DBMS
+- SQL
+- Operating Systems
+- Computer Networks
+- Git
+- Cloud
+- Software Engineering
+
+Mechanical:
+- Engineering Mechanics
+- Strength of Materials
+- Manufacturing
+- CAD
+- SolidWorks
+- AutoCAD
+- GD&T
+- Thermodynamics
+- Production
+- Quality
+
+ECE:
+- Digital Electronics
+- Analog Electronics
+- Embedded Systems
+- Microcontrollers
+- VLSI
+- Verilog
+- Communication Systems
+
+Civil:
+- Structural Engineering
+- RCC
+- Steel Structures
+- Surveying
+- AutoCAD
+- Estimation
+- Construction Management
+
+AI & Data Science:
+- Python
+- SQL
+- Statistics
+- Machine Learning
+- Data Analysis
+- Data Visualization
+- Deep Learning
+- Generative AI
+
+These examples are starting points only.
+Do not assume they are final institutional standards.
+Make the skill framework configurable and validate it before production use.
+
+============================================================
+6. CORE PRODUCT MODULES
+============================================================
+
+The platform should eventually contain:
+
+1. Authentication & Role Management
+2. College Management
+3. Department Management
+4. Student Profile
+5. Academic Profile
+6. Skill Profile
+7. Resume Analyzer
+8. Assessment Engine
+9. Readiness Scoring Engine
+10. Career Role Mapping
+11. Company & Job Description Management
+12. Eligibility Engine
+13. Skill Gap Analysis
+14. Personalized Learning Plan
+15. RAG Knowledge System
+16. MCP Integration Layer
+17. AI Career Assistant
+18. Mock Interview
+19. Progress Tracking
+20. Reassessment
+21. Student Dashboard
+22. Faculty/Mentor Dashboard
+23. Placement Officer Dashboard
+24. HOD Dashboard
+25. Analytics & Reporting
+26. Audit & Security
+27. Admin Configuration
+
+============================================================
+7. STUDENT JOURNEY
+============================================================
+
+Expected student journey:
+
+Registration
+    ↓
+Student Profile
+    ↓
+Academic Information
+    ↓
+Department Selection
+    ↓
+Career Goal Selection
+    ↓
+Resume Upload
+    ↓
+Resume Analysis
+    ↓
+Baseline Assessment
+    ↓
+Skill Assessment
+    ↓
+Readiness Score
+    ↓
+Career Role Analysis
+    ↓
+Skill Gap Analysis
+    ↓
+Personalized Learning Plan
+    ↓
+Learning / Practice
+    ↓
+Mock Interview
+    ↓
+Reassessment
+    ↓
+Updated Readiness Score
+    ↓
+Progress Tracking
+
+============================================================
+8. READINESS SCORE
+============================================================
+
+The readiness score must be deterministic, transparent, explainable, configurable,
+and version-controlled.
+
+Do NOT allow the LLM to directly decide the numerical readiness score.
+
+Example conceptual structure:
+
+Overall Readiness Score =
+Weighted combination of:
+
+- Aptitude
+- Technical Skills
+- Communication
+- Problem Solving
+- Resume
+- Interview
+- Projects
+- Academic factors
+
+Weights must be configurable.
+
+The platform should support:
+
+- Overall readiness score
+- Category scores
+- Department-specific score
+- Career-role-specific score
+- Company-specific eligibility
+- Skill confidence
+- Evidence supporting each score
+
+IMPORTANT:
+
+Readiness score is NOT a prediction of whether a student will get a job.
+
+Never claim:
+
+"Student has 85% chance of placement."
+
+Instead use language such as:
+
+"Current readiness level: Strong"
+"Technical SQL competency requires improvement"
+"Student meets configured eligibility criteria for this role"
+
+============================================================
+9. ELIGIBILITY VS READINESS
+============================================================
+
+Keep these concepts separate.
+
+ELIGIBILITY:
+Deterministic rules such as:
+
+- CGPA >= configured value
+- No active arrears
+- Attendance >= configured value
+- Department eligibility
+- Graduation year
+- Other company-defined criteria
+
+READINESS:
+Evidence-based competency assessment.
+
+The system must never combine eligibility and readiness into one opaque score.
+
+============================================================
+10. SKILL GAP ENGINE
+============================================================
+
+For a selected career role:
+
+Student Evidence
+       ↓
+Current Skill Level
+       ↓
+Required Skill Level
+       ↓
+Gap Calculation
+       ↓
+Priority
+       ↓
+Recommended Action
+
+Example:
+
+Target Role:
+Mechanical Design Engineer
+
+Skills:
+
+Engineering Mechanics
+Current: 72
+Required: 70
+Gap: 0
+Status: Ready
+
+SolidWorks
+Current: 42
+Required: 75
+Gap: 33
+Status: High Priority
+
+GD&T
+Current: 38
+Required: 65
+Gap: 27
+Status: High Priority
+
+Communication
+Current: 61
+Required: 70
+Gap: 9
+Status: Medium Priority
+
+Scores above are illustrative only.
+
+============================================================
+11. CAREER ROLE ENGINE
+============================================================
+
+Career roles must be configurable.
+
+Examples:
+
+CSE:
+- Software Developer
+- Backend Developer
+- Data Engineer
+- Cloud Engineer
+- QA Engineer
+- DevOps Engineer
+- AI/ML Engineer
+
+Mechanical:
+- Mechanical Design Engineer
+- Manufacturing Engineer
+- Production Engineer
+- Quality Engineer
+- Automotive Engineer
+- CAD Engineer
+
+ECE:
+- Embedded Engineer
+- VLSI Engineer
+- Electronics Design Engineer
+- Hardware Engineer
+
+Civil:
+- Structural Engineer
+- Site Engineer
+- Planning Engineer
+- Quantity Surveyor
+
+AI & DS:
+- Data Analyst
+- Data Scientist
+- ML Engineer
+- AI Engineer
+
+Do not hard-code these mappings.
+
+Use database-driven skill-role mappings.
+
+============================================================
+12. RESUME ANALYZER
+============================================================
+
+Resume analyzer must:
+
+- Extract structured information
+- Identify skills
+- Identify projects
+- Identify education
+- Identify certifications
+- Identify experience
+- Identify missing skills
+- Compare resume against selected career role
+- Compare resume against selected job description
+- Provide explainable recommendations
+
+Do not fabricate information that does not exist in the resume.
+
+Every extracted fact should be traceable to the source document where practical.
+
+============================================================
+13. ASSESSMENT ENGINE
+============================================================
+
+Support:
+
+- Aptitude tests
+- Technical assessments
+- Communication assessments
+- Role-specific assessments
+- Department-specific assessments
+- Interview assessments
+- Coding assessments where applicable
+- Custom college assessments
+
+Assessment engine must support:
+
+- Question bank
+- Difficulty
+- Skill mapping
+- Department mapping
+- Career-role mapping
+- Time limits
+- Attempts
+- Scoring
+- Negative marking if configured
+- Versioning
+- Assessment history
+
+Assessment scoring should be deterministic.
+
+============================================================
+14. PERSONALIZED LEARNING PLAN
+============================================================
+
+Based on skill gaps, generate a structured plan.
+
+Example:
+
+30-Day Plan
+
+Week 1:
+SQL fundamentals
+Daily practice
+5 assessment questions
+
+Week 2:
+Advanced SQL
+Mini project
+
+Week 3:
+Data analysis
+Practice assessment
+
+Week 4:
+Mock interview
+Final assessment
+
+The AI may generate explanations and recommendations, but the plan must be
+grounded in configured skills, approved learning resources, and assessment
+evidence.
+
+============================================================
+15. RAG SYSTEM
+============================================================
+
+RAG should be used for grounded knowledge retrieval.
+
+Potential knowledge sources:
+
+- College syllabus
+- Department curriculum
+- Approved learning materials
+- Placement preparation material
+- Interview guides
+- Company job descriptions
+- Career-role definitions
+- College policies
+- Training content
+- Faculty-approved resources
+- Internal placement documents
+
+RAG pipeline:
+
+Document ingestion
+    ↓
+Parsing
+    ↓
+Chunking
+    ↓
+Metadata
+    ↓
+Embedding
+    ↓
+Vector store
+    ↓
+Retrieval
+    ↓
+Reranking if required
+    ↓
+Context assembly
+    ↓
+LLM response
+    ↓
+Citation / source reference
+
+Every RAG answer should provide citations where appropriate.
+
+If evidence is insufficient:
+
+"I don't have enough approved information to answer this confidently."
+
+Do not hallucinate.
+
+============================================================
+16. MCP SYSTEM
+============================================================
+
+MCP should provide governed access to live systems and tools.
+
+Possible read-only MCP tools:
+
+- get_student_profile
+- get_student_academic_record
+- get_student_attendance
+- get_student_assessment_results
+- get_student_skill_scores
+- get_student_progress
+- get_department_details
+- get_company_requirements
+- get_job_description
+- get_eligibility_rules
+
+MCP should initially be READ-ONLY.
+
+Every tool must have:
+
+- Authentication
+- Authorization
+- Input validation
+- Output schema
+- Audit logging
+- Error handling
+
+Never allow the LLM to freely execute arbitrary database queries.
+
+============================================================
+17. RAG + MCP ORCHESTRATION
+============================================================
+
+Example query:
+
+"Am I ready for a Data Analyst role?"
+
+Expected flow:
+
+1. Authenticate user
+2. Identify student
+3. MCP retrieves current assessment/profile data
+4. System identifies target role
+5. RAG retrieves approved role requirements and resources
+6. Deterministic engine calculates skill gaps
+7. LLM explains the results
+8. Recommendations are generated
+9. Sources are cited
+10. Audit event is recorded
+
+The LLM should orchestrate explanations, not replace deterministic business logic.
+
+============================================================
+18. MOCK INTERVIEW
+============================================================
+
+Support role-specific mock interviews.
+
+Examples:
+
+CSE → Software Developer interview
+Mechanical → Design Engineer interview
+ECE → Embedded Engineer interview
+
+The system should evaluate configured competencies such as:
+
+- Technical knowledge
+- Communication
+- Problem solving
+- Clarity
+- Confidence indicators where technically and ethically appropriate
+
+Avoid making unsupported psychological or personality claims.
+
+============================================================
+19. DASHBOARDS
+============================================================
+
+STUDENT DASHBOARD:
+
+- Overall readiness
+- Skill scores
+- Career goals
+- Skill gaps
+- Learning plan
+- Assessment history
+- Resume score
+- Mock interview progress
+- Reassessment progress
+
+FACULTY DASHBOARD:
+
+- Assigned students
+- Skill gaps
+- Assessment performance
+- Students requiring support
+- Progress
+
+HOD DASHBOARD:
+
+- Department readiness
+- Skill heatmap
+- Career-role distribution
+- Assessment trends
+- Training priorities
+
+PLACEMENT OFFICER DASHBOARD:
+
+- College-wide readiness
+- Department comparison
+- Role readiness
+- Company eligibility
+- Skill gaps
+- Training priorities
+- Progress trends
+
+ADMIN DASHBOARD:
+
+- Departments
+- Roles
+- Skills
+- Assessment configuration
+- Users
+- Permissions
+- Knowledge sources
+- Audit logs
+
+============================================================
+20. SECURITY
+============================================================
+
+Implement:
+
+- RBAC
+- Authentication
+- Authorization
+- Tenant/college isolation
+- Input validation
+- Secure file upload
+- Secrets management
+- Encryption where appropriate
+- Audit logging
+- PII protection
+- Data retention policies
+- Rate limiting
+- API security
+
+Students must only access their authorized information.
+
+Faculty must only access assigned/authorized student data.
+
+Placement officers must access only authorized college data.
+
+============================================================
+21. TECHNICAL DIRECTION
+============================================================
+
+Preferred architecture:
+
+Frontend:
+React / Next.js OR another maintainable production frontend
+
+Backend:
+Python + FastAPI
+
+Database:
+PostgreSQL
+
+Vector database:
+pgvector or Azure AI Search depending on architecture decision
+
+LLM:
+Azure OpenAI or configurable LLM provider
+
+RAG:
+LangChain/LangGraph or lightweight custom implementation where justified
+
+MCP:
+Python MCP implementation / FastMCP
+
+Authentication:
+Enterprise-ready identity provider
+
+Storage:
+Azure Blob Storage or equivalent
+
+Deployment:
+Docker
+Cloud-ready architecture
+
+Observability:
+Structured logging
+Metrics
+Tracing
+LLM/RAG evaluation
+
+Do not blindly select technologies.
+Document architecture decisions and trade-offs before implementation.
+
+============================================================
+22. DATA MODEL
+============================================================
+
+Expected major entities:
+
+College
+User
+Role
+Department
+Student
+AcademicRecord
+Skill
+SkillCategory
+StudentSkill
+CareerRole
+RoleSkill
+Company
+JobDescription
+EligibilityRule
+Assessment
+AssessmentQuestion
+AssessmentAttempt
+AssessmentResult
+Resume
+ResumeAnalysis
+Project
+Certification
+LearningResource
+LearningPlan
+LearningPlanItem
+MockInterview
+InterviewResult
+RAGDocument
+RAGChunk
+MCPTool
+AuditLog
+
+Design relationships carefully.
+
+Avoid unnecessary duplication.
+
+============================================================
+23. NON-FUNCTIONAL REQUIREMENTS
+============================================================
+
+The system should be:
+
+- Secure
+- Scalable
+- Maintainable
+- Testable
+- Observable
+- Configurable
+- Explainable
+- Auditable
+- Department-agnostic
+- API-first
+- Cloud-ready
+
+============================================================
+24. MANDATORY DEVELOPMENT PROCESS
+============================================================
+
+DO NOT IMPLEMENT EVERYTHING AT ONCE.
+
+Follow these phases strictly.
+
+------------------------------------------------------------
+PHASE 0 — REQUIREMENT ANALYSIS
+------------------------------------------------------------
+
+Read:
+
+- PRD
+- User stories
+- Acceptance criteria
+- Existing project documentation
+
+Create:
+
+docs/REQUIREMENT_ANALYSIS.md
+
+Analyze:
+
+- Functional requirements
+- Non-functional requirements
+- Actors
+- Modules
+- Dependencies
+- Business rules
+- Assumptions
+- Risks
+- Missing information
+- Contradictions
+- External integrations
+
+DO NOT WRITE APPLICATION CODE.
+
+STOP.
+
+Wait for approval.
+
+------------------------------------------------------------
+PHASE 1 — ARCHITECTURE
+------------------------------------------------------------
+
+Create/update:
+
+docs/ARCHITECTURE.md
+docs/DATABASE_DESIGN.md
+docs/API_SPECIFICATION.md
+docs/RAG_DESIGN.md
+docs/MCP_DESIGN.md
+docs/SECURITY_DESIGN.md
+docs/UI_UX_SPECIFICATION.md
+
+Include:
+
+- Component architecture
+- Data flow
+- API flow
+- RAG flow
+- MCP flow
+- Authentication
+- Authorization
+- Database model
+- Error handling
+- Observability
+- Deployment architecture
+
+STOP.
+
+Wait for approval.
+
+------------------------------------------------------------
+PHASE 2 — REPOSITORY STRUCTURE
+------------------------------------------------------------
+
+Create the project structure only.
+
+Example:
+
+backend/
+frontend/
+docs/
+tests/
+scripts/
+data/
+config/
+docker/
+
+Create configuration templates.
+
+Verify basic startup.
+
+Do NOT implement business features.
+
+STOP.
+
+Wait for approval.
+
+------------------------------------------------------------
+PHASE 3 — FOUNDATION
+------------------------------------------------------------
+
+Implement:
+
+- Application configuration
+- Database connection
+- Logging
+- Error handling
+- Authentication foundation
+- RBAC foundation
+- Health endpoints
+- Basic API structure
+- Test framework
+
+Write tests.
+
+STOP.
+
+------------------------------------------------------------
+PHASE 4 — STUDENT PROFILE
+------------------------------------------------------------
+
+Implement:
+
+- College
+- Department
+- Student
+- Academic profile
+- Skills
+- Career goals
+
+Create APIs and tests.
+
+STOP.
+
+------------------------------------------------------------
+PHASE 5 — RESUME ANALYZER
+------------------------------------------------------------
+
+Implement:
+
+- Resume upload
+- Parsing
+- Structured extraction
+- Skill extraction
+- Career-role comparison
+- Job-description comparison
+
+Do not fabricate information.
+
+Write tests.
+
+STOP.
+
+------------------------------------------------------------
+PHASE 6 — ASSESSMENT ENGINE
+------------------------------------------------------------
+
+Implement:
+
+- Question bank
+- Assessments
+- Attempts
+- Scoring
+- Results
+- Skill mapping
+- Assessment history
+
+STOP.
+
+------------------------------------------------------------
+PHASE 7 — READINESS ENGINE
+------------------------------------------------------------
+
+Implement deterministic readiness scoring.
+
+Implement:
+
+- Configurable weights
+- Category scores
+- Role-specific scores
+- Evidence
+- Versioning
+- Explainability
+
+Do NOT allow the LLM to calculate the final numerical score.
+
+STOP.
+
+------------------------------------------------------------
+PHASE 8 — CAREER & COMPANY MATCHING
+------------------------------------------------------------
+
+Implement:
+
+- Career roles
+- Role-skill mapping
+- Company
+- Job descriptions
+- Eligibility rules
+- Eligibility engine
+- Skill requirements
+
+Keep eligibility and readiness separate.
+
+STOP.
+
+------------------------------------------------------------
+PHASE 9 — RAG
+------------------------------------------------------------
+
+Implement:
+
+- Document ingestion
+- Parsing
+- Chunking
+- Metadata
+- Embeddings
+- Vector retrieval
+- Citations
+- Insufficient-evidence handling
+
+Test retrieval quality.
+
+STOP.
+
+------------------------------------------------------------
+PHASE 10 — MCP
+------------------------------------------------------------
+
+Implement read-only MCP tools.
+
+Start with:
+
+- Student profile
+- Academic records
+- Assessment results
+- Skill scores
+- Progress
+- Department data
+
+Implement authentication, authorization, validation and audit.
+
+STOP.
+
+------------------------------------------------------------
+PHASE 11 — RAG + MCP ORCHESTRATION
+------------------------------------------------------------
+
+Implement the AI orchestration layer.
+
+Example:
+
+User question
+→ authenticate
+→ MCP data
+→ RAG evidence
+→ deterministic calculation
+→ LLM explanation
+→ citations
+→ audit
+
+STOP.
+
+------------------------------------------------------------
+PHASE 12 — PERSONALIZED PLAN
+------------------------------------------------------------
+
+Implement:
+
+- Skill-gap priorities
+- Learning plan
+- 30-day plan
+- Learning resources
+- Progress tracking
+- Reassessment
+
+STOP.
+
+------------------------------------------------------------
+PHASE 13 — MOCK INTERVIEW
+------------------------------------------------------------
+
+Implement text-based mock interview first.
+
+Role-specific questions.
+
+Competency-based evaluation.
+
+STOP.
+
+------------------------------------------------------------
+PHASE 14 — STUDENT DASHBOARD
+------------------------------------------------------------
+
+Implement:
+
+- Readiness
+- Skills
+- Gaps
+- Career roles
+- Learning plan
+- Assessments
+- Progress
+- Resume
+- Interview
+
+STOP.
+
+------------------------------------------------------------
+PHASE 15 — COLLEGE DASHBOARDS
+------------------------------------------------------------
+
+Implement:
+
+Faculty dashboard
+HOD dashboard
+Placement officer dashboard
+Admin dashboard
+
+Include department-wise analytics.
+
+STOP.
+
+------------------------------------------------------------
+PHASE 16 — TESTING & SECURITY
+------------------------------------------------------------
+
+Implement:
+
+- Unit tests
+- Integration tests
+- API tests
+- RAG evaluation
+- MCP tests
+- Security tests
+- RBAC tests
+- Prompt injection tests
+- Hallucination tests
+- Performance tests
+
+STOP.
+
+------------------------------------------------------------
+PHASE 17 — DEPLOYMENT
+------------------------------------------------------------
+
+Implement:
+
+- Docker
+- Environment configuration
+- CI/CD
+- Cloud deployment configuration
+- Monitoring
+- Logging
+- Backup strategy
+- Production documentation
+
+STOP.
+
+============================================================
+25. INCREMENTAL IMPLEMENTATION RULES
+============================================================
+
+At the end of EVERY phase report:
+
+1. Phase completed
+2. Requirements implemented
+3. Files created
+4. Files modified
+5. Tests executed
+6. Test results
+7. APIs added
+8. Database changes
+9. Known issues
+10. Assumptions
+11. Security considerations
+12. Documentation updated
+13. What will be implemented in the next phase
+
+Then STOP.
+
+Do not automatically continue.
+
+============================================================
+26. NO FAKE IMPLEMENTATION
+============================================================
+
+Never create fake functionality simply to make a demo work.
+
+Avoid:
+
+- Hard-coded student results
+- Fake placement percentages
+- Fake company decisions
+- Fake database results
+- Fake RAG citations
+- Fake MCP responses
+- Fake readiness scores
+- Placeholder business logic disguised as production functionality
+
+If something is not implemented, explicitly state:
+
+"Not implemented in this phase."
+
+============================================================
+27. BUSINESS RULE DISCIPLINE
+============================================================
+
+Never invent institutional policies.
+
+If a business rule is unknown:
+
+1. Identify it.
+2. Document it as an open question.
+3. Make the system configurable where appropriate.
+4. Ask for clarification before implementing irreversible logic.
+
+============================================================
+28. AI SAFETY & QUALITY
+============================================================
+
+The AI must:
+
+- Ground responses in evidence
+- Cite sources
+- Avoid hallucination
+- Avoid unsupported placement predictions
+- Respect authorization
+- Never expose another student's information
+- Never execute unauthorized tools
+- Never bypass deterministic business rules
+
+============================================================
+29. EVALUATION
+============================================================
+
+The platform should eventually measure:
+
+- Assessment accuracy
+- Skill-gap accuracy
+- RAG retrieval quality
+- RAG groundedness
+- Citation correctness
+- MCP tool correctness
+- Recommendation usefulness
+- Student progress
+- Readiness improvement
+- Faculty usefulness
+- Placement team usefulness
+
+Do not claim product effectiveness without pilot evidence.
+
+============================================================
+30. MVP PRIORITY
+============================================================
+
+The first production MVP should NOT attempt every feature.
+
+Recommended MVP:
+
+1. Authentication
+2. College/departments
+3. Student profile
+4. Career role selection
+5. Resume analysis
+6. Assessments
+7. Deterministic readiness score
+8. Skill-gap analysis
+9. Personalized 30-day plan
+10. Student dashboard
+11. Basic placement officer dashboard
+
+Then add:
+
+RAG
+→ MCP
+→ AI orchestration
+→ Mock interviews
+→ Advanced analytics
+
+============================================================
+31. FIRST ACTION
+============================================================
+
+When this prompt is provided to Codex/Claude:
+
+DO NOT START CODING.
+
+First inspect the repository.
+
+Locate:
+
+- PRD
+- User stories
+- Acceptance criteria
+- Existing architecture documents
+- Existing source code
+- Existing database
+- Existing tests
+
+Then execute ONLY PHASE 0.
+
+Create:
+
+docs/REQUIREMENT_ANALYSIS.md
+
+Report findings.
+
+STOP and wait for explicit approval.
+
+============================================================
+32. GOLDEN RULE
+============================================================
+
+BUILD THE PLATFORM INCREMENTALLY.
+
+DO NOT BUILD EVERYTHING IN ONE RESPONSE.
+
+DO NOT SKIP REQUIREMENT ANALYSIS.
+
+DO NOT SKIP ARCHITECTURE.
+
+DO NOT INVENT BUSINESS RULES.
+
+DO NOT LET LLMs MAKE DETERMINISTIC DECISIONS.
+
+DO NOT MIX ELIGIBILITY WITH READINESS.
+
+DO NOT HARD-CODE DEPARTMENT LOGIC.
+
+DO NOT CLAIM PLACEMENT PROBABILITY.
+
+DO NOT FABRICATE DATA.
+
+EVERY PHASE MUST BE TESTED.
+
+EVERY PHASE MUST BE DOCUMENTED.
+
+AFTER EVERY PHASE, STOP AND WAIT FOR APPROVAL.
+
+The final product must be a configurable, secure, explainable,
+evidence-based AI Engineering Career Intelligence Platform capable of
+supporting all engineering departments.

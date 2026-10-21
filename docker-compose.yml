@@ -1,0 +1,68 @@
+# Production-like stack: nginx (frontend + /api proxy) -> backend -> postgres.
+# Only the frontend port is published; the database and backend are reachable only inside the network.
+# Required in .env: POSTGRES_PASSWORD, SECRET_KEY (>= 32 random chars), CORS_ORIGINS if the site is not same-origin.
+services:
+  db:
+    # pgvector image so the later embedding phase needs no database swap; same major version as development.
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-gradnexa}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-gradnexa}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      ENVIRONMENT: production
+      DATABASE_URL: postgresql://${POSTGRES_USER:-gradnexa}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-gradnexa}
+      SECRET_KEY: ${SECRET_KEY:?set SECRET_KEY in .env (python -c "import secrets; print(secrets.token_urlsafe(48))")}
+      UPLOAD_DIR: /app/uploads
+      RATE_LIMIT_ENABLED: "true"
+      BCRYPT_ROUNDS: ${BCRYPT_ROUNDS:-12}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost}
+    # Migrations run once before the workers start. Proxy headers give rate limiting the real client IP.
+    command:
+      - sh
+      - -c
+      - alembic upgrade head && exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers ${WEB_CONCURRENCY:-2} --proxy-headers --forwarded-allow-ips='*'
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - uploads_data:/app/uploads
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8000/health/ready || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Empty = same origin: the browser calls /api/v1/... on the nginx host and nginx proxies it.
+        VITE_API_URL: ${VITE_API_URL:-}
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  uploads_data:

@@ -1,0 +1,7 @@
+.git
+.claude
+.env
+.env.*
+node_modules/
+**/__pycache__/
+uploads/

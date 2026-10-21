@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.egg-info/
+
+# Node
+node_modules/
+frontend/dist/
+frontend/coverage/
+*.tsbuildinfo
+npm-debug.log*
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Uploads
+uploads/
+backend/uploads/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Backups and local logs
+backups/
+*.log
+
+# Local databases and dumps (contain user data and password hashes)
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite-backup
+*.dump
+backend/dev.db*
+
+# Local-only tooling and reference files
+screenshots/
+.claude/settings.local.json

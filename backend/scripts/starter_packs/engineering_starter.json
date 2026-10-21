@@ -1,0 +1,1586 @@
+{
+  "name": "Generic engineering starter set",
+  "notice": "Starter values for review. Weights, thresholds, required levels, questions, resources and the sample job are placeholders, not the college's policy. Edit them in the app.",
+  "categories": [
+    {
+      "name": "Programming",
+      "scope": "COMMON",
+      "skills": [
+        "Python",
+        "Data Structures and Algorithms",
+        "SQL and Databases",
+        "Object-Oriented Design"
+      ]
+    },
+    {
+      "name": "Core Computing",
+      "scope": "COMMON",
+      "skills": [
+        "Operating Systems",
+        "Computer Networks"
+      ]
+    },
+    {
+      "name": "Aptitude",
+      "scope": "COMMON",
+      "skills": [
+        "Quantitative Aptitude",
+        "Logical Reasoning",
+        "Verbal Ability"
+      ]
+    },
+    {
+      "name": "Communication",
+      "scope": "COMMON",
+      "skills": [
+        "Written Communication",
+        "Presentation Skills"
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "name": "Software Developer",
+      "description": "Builds and maintains application software.",
+      "skills": [
+        [
+          "Python",
+          70,
+          2
+        ],
+        [
+          "Data Structures and Algorithms",
+          70,
+          2
+        ],
+        [
+          "Object-Oriented Design",
+          65,
+          1.5
+        ],
+        [
+          "SQL and Databases",
+          55,
+          1
+        ],
+        [
+          "Operating Systems",
+          50,
+          0.5
+        ],
+        [
+          "Written Communication",
+          50,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "Backend Developer",
+      "description": "Builds server-side services and databases.",
+      "skills": [
+        [
+          "Python",
+          70,
+          2
+        ],
+        [
+          "SQL and Databases",
+          70,
+          2
+        ],
+        [
+          "Data Structures and Algorithms",
+          60,
+          1.5
+        ],
+        [
+          "Computer Networks",
+          55,
+          1
+        ],
+        [
+          "Object-Oriented Design",
+          60,
+          1
+        ],
+        [
+          "Written Communication",
+          50,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "Data Analyst",
+      "description": "Turns data into findings and presents them.",
+      "skills": [
+        [
+          "SQL and Databases",
+          70,
+          2
+        ],
+        [
+          "Python",
+          60,
+          1.5
+        ],
+        [
+          "Quantitative Aptitude",
+          65,
+          1.5
+        ],
+        [
+          "Logical Reasoning",
+          55,
+          1
+        ],
+        [
+          "Written Communication",
+          55,
+          1
+        ],
+        [
+          "Presentation Skills",
+          55,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "Network and Systems Engineer",
+      "description": "Runs and supports networks and operating systems.",
+      "skills": [
+        [
+          "Computer Networks",
+          70,
+          2
+        ],
+        [
+          "Operating Systems",
+          65,
+          2
+        ],
+        [
+          "Python",
+          50,
+          1
+        ],
+        [
+          "Logical Reasoning",
+          55,
+          1
+        ],
+        [
+          "Written Communication",
+          50,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "Graduate Engineer Trainee",
+      "description": "General entry role across engineering departments.",
+      "skills": [
+        [
+          "Quantitative Aptitude",
+          60,
+          1.5
+        ],
+        [
+          "Logical Reasoning",
+          60,
+          1.5
+        ],
+        [
+          "Verbal Ability",
+          60,
+          1.5
+        ],
+        [
+          "Written Communication",
+          55,
+          1
+        ],
+        [
+          "Presentation Skills",
+          50,
+          1
+        ]
+      ]
+    }
+  ],
+  "readiness_rule": {
+    "weights": {
+      "Programming": 40,
+      "Core Computing": 20,
+      "Aptitude": 25,
+      "Communication": 15
+    },
+    "levels": [
+      [
+        "Needs improvement",
+        0
+      ],
+      [
+        "Developing",
+        50
+      ],
+      [
+        "Strong",
+        75
+      ]
+    ],
+    "high_min_gap": 20,
+    "medium_min_gap": 10
+  },
+  "assessments": [
+    {
+      "title": "Programming Fundamentals Test",
+      "type": "TECHNICAL",
+      "time_limit_min": 30,
+      "max_attempts": 3,
+      "negative_marking": 0.25,
+      "questions": [
+        {
+          "skill": "Python",
+          "difficulty": "EASY",
+          "body": "Which keyword is used to define a function in Python?",
+          "options": [
+            {
+              "id": "a",
+              "text": "def"
+            },
+            {
+              "id": "b",
+              "text": "func"
+            },
+            {
+              "id": "c",
+              "text": "function"
+            },
+            {
+              "id": "d",
+              "text": "define"
+            }
+          ],
+          "correct": [
+            "a"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Python",
+          "difficulty": "EASY",
+          "body": "What is the output of print(type([]))?",
+          "options": [
+            {
+              "id": "a",
+              "text": "<class 'list'>"
+            },
+            {
+              "id": "b",
+              "text": "<class 'tuple'>"
+            },
+            {
+              "id": "c",
+              "text": "<class 'dict'>"
+            },
+            {
+              "id": "d",
+              "text": "list"
+            }
+          ],
+          "correct": [
+            "a"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Python",
+          "difficulty": "MEDIUM",
+          "body": "Which of the following data types is immutable in Python?",
+          "options": [
+            {
+              "id": "a",
+              "text": "list"
+            },
+            {
+              "id": "b",
+              "text": "dict"
+            },
+            {
+              "id": "c",
+              "text": "tuple"
+            },
+            {
+              "id": "d",
+              "text": "set"
+            }
+          ],
+          "correct": [
+            "c"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Data Structures and Algorithms",
+          "difficulty": "EASY",
+          "body": "What is the time complexity of binary search on a sorted array of n elements?",
+          "options": [
+            {
+              "id": "a",
+              "text": "O(n)"
+            },
+            {
+              "id": "b",
+              "text": "O(log n)"
+            },
+            {
+              "id": "c",
+              "text": "O(n log n)"
+            },
+            {
+              "id": "d",
+              "text": "O(1)"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Data Structures and Algorithms",
+          "difficulty": "EASY",
+          "body": "Which data structure follows the LIFO (last in, first out) order?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Queue"
+            },
+            {
+              "id": "b",
+              "text": "Stack"
+            },
+            {
+              "id": "c",
+              "text": "Heap"
+            },
+            {
+              "id": "d",
+              "text": "Graph"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Data Structures and Algorithms",
+          "difficulty": "MEDIUM",
+          "body": "Which sorting algorithm is based on divide and conquer and has an average time complexity of O(n log n)?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Bubble sort"
+            },
+            {
+              "id": "b",
+              "text": "Insertion sort"
+            },
+            {
+              "id": "c",
+              "text": "Merge sort"
+            },
+            {
+              "id": "d",
+              "text": "Selection sort"
+            }
+          ],
+          "correct": [
+            "c"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "SQL and Databases",
+          "difficulty": "EASY",
+          "body": "Which SQL clause filters rows before they are grouped?",
+          "options": [
+            {
+              "id": "a",
+              "text": "HAVING"
+            },
+            {
+              "id": "b",
+              "text": "WHERE"
+            },
+            {
+              "id": "c",
+              "text": "ORDER BY"
+            },
+            {
+              "id": "d",
+              "text": "GROUP BY"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "SQL and Databases",
+          "difficulty": "MEDIUM",
+          "body": "Which command removes all rows from a table but keeps the table structure?",
+          "options": [
+            {
+              "id": "a",
+              "text": "DROP TABLE"
+            },
+            {
+              "id": "b",
+              "text": "DELETE TABLE"
+            },
+            {
+              "id": "c",
+              "text": "TRUNCATE TABLE"
+            },
+            {
+              "id": "d",
+              "text": "REMOVE TABLE"
+            }
+          ],
+          "correct": [
+            "c"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "SQL and Databases",
+          "difficulty": "MEDIUM",
+          "body": "Which join returns all rows from the left table and the matching rows from the right table?",
+          "options": [
+            {
+              "id": "a",
+              "text": "INNER JOIN"
+            },
+            {
+              "id": "b",
+              "text": "LEFT JOIN"
+            },
+            {
+              "id": "c",
+              "text": "CROSS JOIN"
+            },
+            {
+              "id": "d",
+              "text": "SELF JOIN"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Object-Oriented Design",
+          "difficulty": "EASY",
+          "body": "Which object-oriented principle hides internal details and exposes only what is necessary?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Inheritance"
+            },
+            {
+              "id": "b",
+              "text": "Polymorphism"
+            },
+            {
+              "id": "c",
+              "text": "Encapsulation"
+            },
+            {
+              "id": "d",
+              "text": "Recursion"
+            }
+          ],
+          "correct": [
+            "c"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Object-Oriented Design",
+          "difficulty": "MEDIUM",
+          "body": "A class that cannot be instantiated and may declare abstract methods is called:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Final class"
+            },
+            {
+              "id": "b",
+              "text": "Abstract class"
+            },
+            {
+              "id": "c",
+              "text": "Static class"
+            },
+            {
+              "id": "d",
+              "text": "Concrete class"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Object-Oriented Design",
+          "difficulty": "MEDIUM",
+          "body": "Select ALL that are pillars of object-oriented programming.",
+          "options": [
+            {
+              "id": "a",
+              "text": "Encapsulation"
+            },
+            {
+              "id": "b",
+              "text": "Compilation"
+            },
+            {
+              "id": "c",
+              "text": "Inheritance"
+            },
+            {
+              "id": "d",
+              "text": "Polymorphism"
+            }
+          ],
+          "correct": [
+            "a",
+            "c",
+            "d"
+          ],
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Aptitude Test 1",
+      "type": "APTITUDE",
+      "time_limit_min": 30,
+      "max_attempts": 3,
+      "negative_marking": 0.25,
+      "questions": [
+        {
+          "skill": "Quantitative Aptitude",
+          "difficulty": "EASY",
+          "body": "What is 15% of 240?",
+          "options": [
+            {
+              "id": "a",
+              "text": "24"
+            },
+            {
+              "id": "b",
+              "text": "30"
+            },
+            {
+              "id": "c",
+              "text": "36"
+            },
+            {
+              "id": "d",
+              "text": "40"
+            }
+          ],
+          "correct": [
+            "c"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Quantitative Aptitude",
+          "difficulty": "EASY",
+          "body": "A train travels 120 km in 2 hours. What is its average speed in km/h?",
+          "options": [
+            {
+              "id": "a",
+              "text": "50"
+            },
+            {
+              "id": "b",
+              "text": "60"
+            },
+            {
+              "id": "c",
+              "text": "70"
+            },
+            {
+              "id": "d",
+              "text": "80"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Quantitative Aptitude",
+          "difficulty": "MEDIUM",
+          "body": "The cost price of an item is 400 and its selling price is 500. What is the profit percentage?",
+          "options": [
+            {
+              "id": "a",
+              "text": "20%"
+            },
+            {
+              "id": "b",
+              "text": "25%"
+            },
+            {
+              "id": "c",
+              "text": "30%"
+            },
+            {
+              "id": "d",
+              "text": "15%"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Logical Reasoning",
+          "difficulty": "MEDIUM",
+          "body": "Find the next number in the series: 2, 6, 12, 20, 30, ?",
+          "options": [
+            {
+              "id": "a",
+              "text": "40"
+            },
+            {
+              "id": "b",
+              "text": "42"
+            },
+            {
+              "id": "c",
+              "text": "44"
+            },
+            {
+              "id": "d",
+              "text": "36"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Logical Reasoning",
+          "difficulty": "MEDIUM",
+          "body": "All roses are flowers. Some flowers fade quickly. Which conclusion must be true?",
+          "options": [
+            {
+              "id": "a",
+              "text": "All roses fade quickly"
+            },
+            {
+              "id": "b",
+              "text": "Some roses fade quickly"
+            },
+            {
+              "id": "c",
+              "text": "Nothing definite follows about roses fading quickly"
+            },
+            {
+              "id": "d",
+              "text": "No rose fades quickly"
+            }
+          ],
+          "correct": [
+            "c"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Logical Reasoning",
+          "difficulty": "EASY",
+          "body": "A is the brother of B, and B is the sister of C. How is A related to C?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Cousin"
+            },
+            {
+              "id": "b",
+              "text": "Brother"
+            },
+            {
+              "id": "c",
+              "text": "Uncle"
+            },
+            {
+              "id": "d",
+              "text": "Father"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Verbal Ability",
+          "difficulty": "EASY",
+          "body": "Choose the grammatically correct sentence.",
+          "options": [
+            {
+              "id": "a",
+              "text": "He go to college every day."
+            },
+            {
+              "id": "b",
+              "text": "He goes to college every day."
+            },
+            {
+              "id": "c",
+              "text": "He going to college every day."
+            },
+            {
+              "id": "d",
+              "text": "He gone to college every day."
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Verbal Ability",
+          "difficulty": "EASY",
+          "body": "Choose the word closest in meaning to 'abundant'.",
+          "options": [
+            {
+              "id": "a",
+              "text": "Scarce"
+            },
+            {
+              "id": "b",
+              "text": "Plentiful"
+            },
+            {
+              "id": "c",
+              "text": "Tiny"
+            },
+            {
+              "id": "d",
+              "text": "Costly"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Verbal Ability",
+          "difficulty": "MEDIUM",
+          "body": "Choose the correct spelling.",
+          "options": [
+            {
+              "id": "a",
+              "text": "Accomodate"
+            },
+            {
+              "id": "b",
+              "text": "Acommodate"
+            },
+            {
+              "id": "c",
+              "text": "Accommodate"
+            },
+            {
+              "id": "d",
+              "text": "Acomodate"
+            }
+          ],
+          "correct": [
+            "c"
+          ],
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Communication Basics",
+      "type": "COMMUNICATION",
+      "time_limit_min": 20,
+      "max_attempts": 2,
+      "negative_marking": 0,
+      "questions": [
+        {
+          "skill": "Written Communication",
+          "difficulty": "EASY",
+          "body": "Which is the most appropriate opening for a formal email to a recruiter?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hey!"
+            },
+            {
+              "id": "b",
+              "text": "Dear Ms. Sharma,"
+            },
+            {
+              "id": "c",
+              "text": "Yo,"
+            },
+            {
+              "id": "d",
+              "text": "Hi buddy,"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Written Communication",
+          "difficulty": "EASY",
+          "body": "Which is the best subject line for a job application email?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Hello"
+            },
+            {
+              "id": "b",
+              "text": "Urgent!!!"
+            },
+            {
+              "id": "c",
+              "text": "Application for Graduate Engineer Trainee - Your Name"
+            },
+            {
+              "id": "d",
+              "text": "(no subject)"
+            }
+          ],
+          "correct": [
+            "c"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Written Communication",
+          "difficulty": "MEDIUM",
+          "body": "What should a resume summary contain?",
+          "options": [
+            {
+              "id": "a",
+              "text": "A long paragraph of personal history"
+            },
+            {
+              "id": "b",
+              "text": "Two or three concise lines on your skills and goals"
+            },
+            {
+              "id": "c",
+              "text": "Only your hobbies"
+            },
+            {
+              "id": "d",
+              "text": "A famous quotation"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Presentation Skills",
+          "difficulty": "EASY",
+          "body": "What is a good way to begin a presentation?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Apologise for not being prepared"
+            },
+            {
+              "id": "b",
+              "text": "Read the slides word for word"
+            },
+            {
+              "id": "c",
+              "text": "State the purpose and briefly outline what you will cover"
+            },
+            {
+              "id": "d",
+              "text": "Show only the conclusion slide"
+            }
+          ],
+          "correct": [
+            "c"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Presentation Skills",
+          "difficulty": "MEDIUM",
+          "body": "You are asked a question you cannot fully answer. What should you do?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Invent an answer"
+            },
+            {
+              "id": "b",
+              "text": "Say what you do know, say honestly what you do not, and offer to follow up"
+            },
+            {
+              "id": "c",
+              "text": "Stay silent"
+            },
+            {
+              "id": "d",
+              "text": "Change the topic"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Presentation Skills",
+          "difficulty": "EASY",
+          "body": "Good presentation slides should:",
+          "options": [
+            {
+              "id": "a",
+              "text": "Contain full paragraphs"
+            },
+            {
+              "id": "b",
+              "text": "Use few words and clear visuals"
+            },
+            {
+              "id": "c",
+              "text": "Use as many colours as possible"
+            },
+            {
+              "id": "d",
+              "text": "Use very small text to fit more"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Computer Fundamentals",
+      "type": "TECHNICAL",
+      "time_limit_min": 20,
+      "max_attempts": 3,
+      "negative_marking": 0.25,
+      "questions": [
+        {
+          "skill": "Operating Systems",
+          "difficulty": "EASY",
+          "body": "Which of these is NOT a state of a process?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Running"
+            },
+            {
+              "id": "b",
+              "text": "Ready"
+            },
+            {
+              "id": "c",
+              "text": "Waiting"
+            },
+            {
+              "id": "d",
+              "text": "Compiling"
+            }
+          ],
+          "correct": [
+            "d"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Operating Systems",
+          "difficulty": "MEDIUM",
+          "body": "Which scheduling algorithm gives each process a fixed time slice in turn?",
+          "options": [
+            {
+              "id": "a",
+              "text": "First come first served"
+            },
+            {
+              "id": "b",
+              "text": "Round robin"
+            },
+            {
+              "id": "c",
+              "text": "Shortest job first"
+            },
+            {
+              "id": "d",
+              "text": "Priority scheduling"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Operating Systems",
+          "difficulty": "MEDIUM",
+          "body": "Which of the following is one of the four necessary conditions for a deadlock?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Mutual exclusion"
+            },
+            {
+              "id": "b",
+              "text": "Time slicing"
+            },
+            {
+              "id": "c",
+              "text": "Paging"
+            },
+            {
+              "id": "d",
+              "text": "Caching"
+            }
+          ],
+          "correct": [
+            "a"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Computer Networks",
+          "difficulty": "EASY",
+          "body": "Which layer of the OSI model is responsible for routing packets between networks?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Data link"
+            },
+            {
+              "id": "b",
+              "text": "Network"
+            },
+            {
+              "id": "c",
+              "text": "Transport"
+            },
+            {
+              "id": "d",
+              "text": "Session"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Computer Networks",
+          "difficulty": "EASY",
+          "body": "Which protocol translates domain names into IP addresses?",
+          "options": [
+            {
+              "id": "a",
+              "text": "DHCP"
+            },
+            {
+              "id": "b",
+              "text": "DNS"
+            },
+            {
+              "id": "c",
+              "text": "FTP"
+            },
+            {
+              "id": "d",
+              "text": "SMTP"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "marks": 1
+        },
+        {
+          "skill": "Computer Networks",
+          "difficulty": "EASY",
+          "body": "Which transport protocol provides reliable, connection-oriented delivery?",
+          "options": [
+            {
+              "id": "a",
+              "text": "UDP"
+            },
+            {
+              "id": "b",
+              "text": "IP"
+            },
+            {
+              "id": "c",
+              "text": "TCP"
+            },
+            {
+              "id": "d",
+              "text": "ICMP"
+            }
+          ],
+          "correct": [
+            "c"
+          ],
+          "marks": 1
+        }
+      ]
+    }
+  ],
+  "resources": [
+    [
+      "Python",
+      "Python tutorial (official documentation)",
+      "https://docs.python.org/3/tutorial/"
+    ],
+    [
+      "Data Structures and Algorithms",
+      "Algorithms (Khan Academy)",
+      "https://www.khanacademy.org/computing/computer-science/algorithms"
+    ],
+    [
+      "SQL and Databases",
+      "SQL tutorial",
+      "https://www.sqlitetutorial.net/"
+    ],
+    [
+      "Object-Oriented Design",
+      "Object-oriented design patterns",
+      "https://refactoring.guru/design-patterns"
+    ],
+    [
+      "Operating Systems",
+      "Operating Systems: Three Easy Pieces (free book)",
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/"
+    ],
+    [
+      "Computer Networks",
+      "Computer network tutorials",
+      "https://www.geeksforgeeks.org/computer-network-tutorials/"
+    ],
+    [
+      "Quantitative Aptitude",
+      "Quantitative aptitude practice questions",
+      "https://www.indiabix.com/aptitude/questions-and-answers/"
+    ],
+    [
+      "Logical Reasoning",
+      "Logical reasoning practice questions",
+      "https://www.indiabix.com/logical-reasoning/questions-and-answers/"
+    ],
+    [
+      "Verbal Ability",
+      "Verbal ability practice questions",
+      "https://www.indiabix.com/verbal-ability/questions-and-answers/"
+    ],
+    [
+      "Written Communication",
+      "Purdue OWL general writing guide",
+      "https://owl.purdue.edu/owl/general_writing/index.html"
+    ],
+    [
+      "Presentation Skills",
+      "TED talks on public speaking",
+      "https://www.ted.com/topics/public+speaking"
+    ]
+  ],
+  "interview_questions": [
+    [
+      "Python",
+      "Technical",
+      "Explain the difference between a list and a tuple in Python.",
+      25,
+      [
+        [
+          "Mutability",
+          [
+            "mutable",
+            "immutable"
+          ],
+          3
+        ],
+        [
+          "Performance or hashing",
+          [
+            "hashable",
+            "faster",
+            "memory",
+            "dictionary key"
+          ],
+          1
+        ],
+        [
+          "Example or use case",
+          [
+            "example",
+            "for instance",
+            "e.g",
+            "coordinates",
+            "records"
+          ],
+          1
+        ]
+      ]
+    ],
+    [
+      "Data Structures and Algorithms",
+      "Technical",
+      "What is the difference between a stack and a queue?",
+      25,
+      [
+        [
+          "LIFO versus FIFO",
+          [
+            "lifo",
+            "last in",
+            "fifo",
+            "first in"
+          ],
+          3
+        ],
+        [
+          "Operations",
+          [
+            "push",
+            "pop",
+            "enqueue",
+            "dequeue"
+          ],
+          2
+        ],
+        [
+          "Use case",
+          [
+            "undo",
+            "recursion",
+            "scheduling",
+            "buffer",
+            "bfs",
+            "example"
+          ],
+          1
+        ]
+      ]
+    ],
+    [
+      "SQL and Databases",
+      "Technical",
+      "Explain what a primary key is and why it matters.",
+      25,
+      [
+        [
+          "Uniqueness",
+          [
+            "unique",
+            "uniquely",
+            "identifier"
+          ],
+          3
+        ],
+        [
+          "No nulls or duplicates",
+          [
+            "null",
+            "duplicate"
+          ],
+          2
+        ],
+        [
+          "Relationships or indexing",
+          [
+            "foreign key",
+            "index",
+            "relationship",
+            "join"
+          ],
+          1
+        ]
+      ]
+    ],
+    [
+      "Object-Oriented Design",
+      "Technical",
+      "What is encapsulation and why is it useful?",
+      25,
+      [
+        [
+          "Bundling data and methods",
+          [
+            "bundle",
+            "data",
+            "methods",
+            "class"
+          ],
+          2
+        ],
+        [
+          "Hiding details",
+          [
+            "hide",
+            "private",
+            "access",
+            "getter",
+            "setter"
+          ],
+          3
+        ],
+        [
+          "Benefit",
+          [
+            "maintain",
+            "security",
+            "flexibility",
+            "change"
+          ],
+          1
+        ]
+      ]
+    ],
+    [
+      "Computer Networks",
+      "Technical",
+      "Explain what happens when you type a URL into a browser.",
+      30,
+      [
+        [
+          "DNS lookup",
+          [
+            "dns",
+            "domain",
+            "ip address"
+          ],
+          2
+        ],
+        [
+          "Connection",
+          [
+            "tcp",
+            "http",
+            "https",
+            "request"
+          ],
+          2
+        ],
+        [
+          "Response and rendering",
+          [
+            "server",
+            "response",
+            "render",
+            "html"
+          ],
+          1
+        ]
+      ]
+    ],
+    [
+      "Operating Systems",
+      "Technical",
+      "What is a deadlock and how can it be prevented?",
+      30,
+      [
+        [
+          "Definition",
+          [
+            "deadlock",
+            "waiting",
+            "circular",
+            "each other"
+          ],
+          3
+        ],
+        [
+          "Necessary conditions",
+          [
+            "mutual exclusion",
+            "hold and wait",
+            "no preemption",
+            "circular wait"
+          ],
+          2
+        ],
+        [
+          "Prevention",
+          [
+            "prevent",
+            "avoid",
+            "ordering",
+            "timeout",
+            "banker"
+          ],
+          2
+        ]
+      ]
+    ],
+    [
+      null,
+      "Behavioural",
+      "Tell me about a project you have worked on.",
+      40,
+      [
+        [
+          "Problem or goal",
+          [
+            "problem",
+            "goal",
+            "objective",
+            "needed"
+          ],
+          2
+        ],
+        [
+          "Your role",
+          [
+            "i built",
+            "i designed",
+            "my role",
+            "i was responsible",
+            "i implemented",
+            "i developed"
+          ],
+          3
+        ],
+        [
+          "Technology",
+          [
+            "using",
+            "python",
+            "java",
+            "sql",
+            "framework",
+            "tool",
+            "technology"
+          ],
+          1
+        ],
+        [
+          "Outcome",
+          [
+            "result",
+            "outcome",
+            "learned",
+            "improved",
+            "delivered",
+            "completed"
+          ],
+          2
+        ]
+      ]
+    ],
+    [
+      null,
+      "Behavioural",
+      "Describe a time you worked in a team and handled a disagreement.",
+      40,
+      [
+        [
+          "Situation",
+          [
+            "team",
+            "project",
+            "disagreement",
+            "conflict"
+          ],
+          2
+        ],
+        [
+          "Action",
+          [
+            "listened",
+            "discussed",
+            "compromise",
+            "agreed",
+            "resolved",
+            "talked"
+          ],
+          3
+        ],
+        [
+          "Result",
+          [
+            "result",
+            "outcome",
+            "learned",
+            "delivered",
+            "improved"
+          ],
+          2
+        ]
+      ]
+    ]
+  ],
+  "sample_company": {
+    "name": "Example Company (sample)",
+    "description": "Placeholder company that shows how a job is set up. Edit or delete it.",
+    "website": "https://example.com"
+  },
+  "sample_job": {
+    "title": "Graduate Software Engineer (sample)",
+    "body": "Sample posting that shows how required skills and eligibility rules are configured. It is saved as a draft, so students cannot see it. Edit it or delete it.",
+    "role": "Software Developer",
+    "skills": [
+      [
+        "Python",
+        65,
+        2
+      ],
+      [
+        "SQL and Databases",
+        60,
+        1
+      ]
+    ],
+    "eligibility": {
+      "cgpa_min": 6.5,
+      "cgpa_basis": "LATEST_SEMESTER",
+      "max_arrears": 0,
+      "attendance_min": 75,
+      "departments": [
+        "CSE",
+        "IT"
+      ],
+      "graduation_years": [
+        2026,
+        2027
+      ]
+    }
+  }
+}

@@ -1,0 +1,2608 @@
+{
+  "title": "GradNexa User Guide",
+  "tagline": "From Engineering Graduate to Industry-Ready Professional.",
+  "principles": [
+    "Scores come from fixed rules, never from an AI model. Each score shows its rule version and the evidence behind it.",
+    "Readiness (how prepared you are) and eligibility (whether you meet a company's rules) are never merged into one number.",
+    "There are no placement predictions: you see levels and plain statements only.",
+    "Nothing is hard-coded: departments, skills, roles, weights and eligibility rules are all set up by your college."
+  ],
+  "roles": [
+    {
+      "role": "Student",
+      "does": "Builds a profile, takes assessments, sees readiness and skill gaps, follows a 30-day plan, practises interviews, analyses a resume, checks jobs.",
+      "lands": "Dashboard"
+    },
+    {
+      "role": "Faculty",
+      "does": "Sees assigned students; writes assessments, questions, resources, interview questions; manages knowledge documents.",
+      "lands": "Faculty dashboard"
+    },
+    {
+      "role": "TPO",
+      "does": "Placement dashboard; manages companies and jobs.",
+      "lands": "Placement dashboard"
+    },
+    {
+      "role": "HOD",
+      "does": "Aggregate view of the departments assigned to them (no individual student records).",
+      "lands": "HOD dashboard"
+    },
+    {
+      "role": "Admin",
+      "does": "Configures everything for the college and can use all staff tools.",
+      "lands": "Profile (use the top menu)"
+    }
+  ],
+  "overview": [
+    {
+      "id": "setup",
+      "title": "Admin sets up the college",
+      "summary": "Skills, career roles, scoring rules, assessments, resources, jobs.",
+      "goto": "a-skills"
+    },
+    {
+      "id": "evidence",
+      "title": "Student builds evidence",
+      "summary": "Registers, completes the profile, takes assessments.",
+      "goto": "s-onboarding"
+    },
+    {
+      "id": "insight",
+      "title": "Readiness and skill gaps",
+      "summary": "Scores per role; gaps ranked High / Medium / Low.",
+      "goto": "s-readiness"
+    },
+    {
+      "id": "action",
+      "title": "Plan and practise",
+      "summary": "30-day plan, mock interviews, resume analysis.",
+      "goto": "s-plan"
+    },
+    {
+      "id": "jobs",
+      "title": "Jobs and eligibility",
+      "summary": "Eligibility is shown separately from readiness.",
+      "goto": "s-jobs"
+    },
+    {
+      "id": "monitor",
+      "title": "Staff monitor progress",
+      "summary": "Faculty, HOD and TPO dashboards.",
+      "goto": "t-placement"
+    }
+  ],
+  "groups": [
+    {
+      "id": "account",
+      "title": "Sign in and account",
+      "procedures": [
+        {
+          "id": "x-register",
+          "title": "Register a new account",
+          "audience": "Student",
+          "path": "/register",
+          "summary": "Create your student account with your college code.",
+          "before": [
+            "Your college's code (ask your college if you do not have it)."
+          ],
+          "steps": [
+            {
+              "do": "Open the application and go to **Register** (a link on the login page).",
+              "expect": "The **Create your account** page opens."
+            },
+            {
+              "do": "Fill in **Full name**, **Email** and **Password** (at least 8 characters).",
+              "detail": "Use an email address you can open: it is used to reset your password."
+            },
+            {
+              "do": "Type your **College code**."
+            },
+            {
+              "do": "Click **Create account**.",
+              "expect": "You are taken to the login page with a note that your account was created."
+            }
+          ],
+          "result": [
+            "A Student account in your college."
+          ],
+          "problems": [
+            {
+              "problem": "The button stays disabled.",
+              "fix": "All four fields must be filled in."
+            },
+            {
+              "problem": "An error about the college code.",
+              "fix": "Check the code with your college; codes are not case-guessable."
+            }
+          ],
+          "next": "x-login"
+        },
+        {
+          "id": "x-login",
+          "title": "Log in",
+          "audience": "Everyone",
+          "path": "/login",
+          "summary": "Sign in and land on your role's home page.",
+          "before": [
+            "An account (see Register; staff accounts are created by an admin changing a registered user's role)."
+          ],
+          "steps": [
+            {
+              "do": "Go to the **Log in** page and enter your **Email** and **Password**."
+            },
+            {
+              "do": "Click **Sign in**.",
+              "expect": "You land on your home page: Student - Dashboard; Faculty - Faculty dashboard; TPO - Placement dashboard; HOD - HOD dashboard; Admin - Profile."
+            },
+            {
+              "do": "A student who has not finished their profile is sent to onboarding automatically.",
+              "detail": "See the Student procedure 'Complete onboarding'."
+            }
+          ],
+          "result": [
+            "A signed-in session. It refreshes itself; after 7 days you must sign in again."
+          ],
+          "problems": [
+            {
+              "problem": "Too many requests.",
+              "fix": "Repeated failed sign-ins are rate-limited. Wait a minute and try again."
+            },
+            {
+              "problem": "Wrong password.",
+              "fix": "Use **Forgot password?** (next procedure)."
+            }
+          ],
+          "next": "x-forgot"
+        },
+        {
+          "id": "x-forgot",
+          "title": "Reset a forgotten password",
+          "audience": "Everyone",
+          "path": "/forgot-password",
+          "summary": "Get a reset link by email.",
+          "before": [
+            "Email sending must be configured by your operator."
+          ],
+          "steps": [
+            {
+              "do": "On the login page click **Forgot password?**."
+            },
+            {
+              "do": "Enter your **Email** and click **Send reset link**.",
+              "expect": "A message says a link has been sent if an account exists (it never reveals whether the email is registered)."
+            },
+            {
+              "do": "Open the email and click the link.",
+              "expect": "The reset page opens."
+            },
+            {
+              "do": "Enter **New password** and **Confirm password**, then click **Reset password**."
+            },
+            {
+              "do": "Log in with the new password."
+            }
+          ],
+          "result": [
+            "Access restored."
+          ],
+          "problems": [
+            {
+              "problem": "No email arrives.",
+              "fix": "Check spam; ask your operator whether email (SMTP) is configured. The link expires after 30 minutes."
+            }
+          ]
+        },
+        {
+          "id": "x-profile",
+          "title": "Edit your name and log out",
+          "audience": "Everyone",
+          "path": "/profile",
+          "summary": "Your profile page and signing out.",
+          "before": [],
+          "steps": [
+            {
+              "do": "Open **Profile** (admins, TPOs, HODs and students all have it in the menu)."
+            },
+            {
+              "do": "Change **Full name** and click **Save changes**.",
+              "detail": "Email and role are shown for reference and cannot be changed here."
+            },
+            {
+              "do": "To sign out click **Log out** at the top right."
+            }
+          ],
+          "result": [
+            "Updated name; session ended on log out."
+          ],
+          "problems": []
+        }
+      ]
+    },
+    {
+      "id": "admin",
+      "title": "Admin: set up the college",
+      "intro": "Follow these in order. Each step feeds the next. Students only see useful results after the chain is complete.",
+      "procedures": [
+        {
+          "id": "a-skills",
+          "title": "1. Create skill categories and skills",
+          "audience": "Admin",
+          "path": "/admin/skills",
+          "summary": "The shared vocabulary used by assessments, roles, resources, resumes and jobs.",
+          "before": [
+            "Departments exist (created when the college was installed)."
+          ],
+          "steps": [
+            {
+              "do": "Click **Skills** in the top menu.",
+              "expect": "The **Skills** page opens with a Category form and a Skill form."
+            },
+            {
+              "do": "In the category form enter **Category name** (for example Programming).",
+              "detail": "Choose **Scope**: Common (every department) or Department (then pick the **Department**)."
+            },
+            {
+              "do": "Click **Add category**. Repeat for each category."
+            },
+            {
+              "do": "In the skill form enter **Skill name**, choose its **Category**, optionally add a **Description**, then click **Add skill**. Repeat for each skill."
+            },
+            {
+              "do": "To change something later, pick it in the list, edit, and click **Save category** or **Save skill** (**Cancel** discards)."
+            }
+          ],
+          "result": [
+            "A skill list that every other module refers to."
+          ],
+          "problems": [
+            {
+              "problem": "'Select a department for a department-scoped category.'",
+              "fix": "Either set Scope to Common or choose a Department."
+            }
+          ],
+          "next": "a-roles"
+        },
+        {
+          "id": "a-roles",
+          "title": "2. Create career roles and their required skills",
+          "audience": "Admin",
+          "path": "/admin/career-roles",
+          "summary": "Roles students can aim for, with the level required for each skill.",
+          "before": [
+            "Skills exist (step 1)."
+          ],
+          "steps": [
+            {
+              "do": "Click **Career roles** in the top menu, then **New role**."
+            },
+            {
+              "do": "Enter **Role name**, optionally **Department** and **Description**, keep **Active** ticked, and click **Create role**.",
+              "expect": "The role opens for editing."
+            },
+            {
+              "do": "In the skills editor choose a skill under **Add a skill** and click **Add skill**. Repeat for every skill the role needs."
+            },
+            {
+              "do": "For each skill set **Required level** (0 to 100; new rows start at 60) and **Weight** (greater than 0; starts at 1).",
+              "detail": "Required level is the target a student's skill score is compared with. Weight says how much that skill matters for this role."
+            },
+            {
+              "do": "Click **Save skills**."
+            }
+          ],
+          "result": [
+            "The yardstick that skill gaps and role readiness are measured against."
+          ],
+          "problems": [
+            {
+              "problem": "'Required level ... must be between 0 and 100.'",
+              "fix": "Correct the number; weights must be above 0."
+            }
+          ],
+          "next": "a-rules"
+        },
+        {
+          "id": "a-rules",
+          "title": "3. Create and activate the readiness rule",
+          "audience": "Admin",
+          "path": "/admin/readiness-rules",
+          "summary": "Category weights, level bands and gap thresholds. There are no defaults.",
+          "before": [
+            "Skill categories (step 1) and roles (step 2)."
+          ],
+          "steps": [
+            {
+              "do": "Click **Readiness rules** in the top menu, then **Create new version**.",
+              "detail": "It is prefilled from the active version if one exists. Rules are immutable: changing scoring always means a new version."
+            },
+            {
+              "do": "Under **Category weights** enter a weight for each skill category you want counted. Leave one blank to exclude it.",
+              "detail": "Weights are relative to each other, not percentages."
+            },
+            {
+              "do": "Under **Level thresholds** give each level a name and **Minimum score** (for example Needs improvement 0, Developing 50, Strong 75). Use **Add level** for more.",
+              "detail": "One level must start at 0."
+            },
+            {
+              "do": "Under **Gap thresholds** set **High priority at gap of at least** and **Medium priority at gap of at least**."
+            },
+            {
+              "do": "Click **Create version**.",
+              "expect": "'Version N created. It is inactive until you activate it.'"
+            },
+            {
+              "do": "Click **Activate** on that version and confirm **Activate this rule version?**.",
+              "expect": "It becomes the active rule; older results keep the version they used."
+            }
+          ],
+          "result": [
+            "Readiness can now be computed, and every result is explainable by rule version."
+          ],
+          "problems": [
+            {
+              "problem": "Students see 'Not enough evidence yet' for everyone.",
+              "fix": "Check a rule is active and that assessments covering the role's skills are published."
+            }
+          ],
+          "note": "These numbers are institutional policy. Agree them with your placement and academic leads before activating.",
+          "next": "a-assess"
+        },
+        {
+          "id": "a-assess",
+          "title": "4. Create an assessment and add questions",
+          "audience": "Admin or Faculty",
+          "path": "/admin/assessments",
+          "summary": "Tests students take to produce skill scores. Assessments are versioned.",
+          "before": [
+            "Skills exist (step 1)."
+          ],
+          "steps": [
+            {
+              "do": "Click **Assessments** in the top menu (**Manage assessments**)."
+            },
+            {
+              "do": "Fill **Title**, **Type**, optionally **Department**, **Time limit (minutes, optional)**, **Max attempts (optional)** and **Negative marking (0 to 1)**."
+            },
+            {
+              "do": "Click **Create assessment**. It starts as a draft."
+            },
+            {
+              "do": "Click the assessment's title to open it, then click **Add question**."
+            },
+            {
+              "do": "Write the **Question**, choose its **Skill**, **Difficulty** and **Marks**, add answer options with **Add option** and tick the correct one(s), then **Add question**. Repeat for every question."
+            },
+            {
+              "do": "Back on the list, click **Publish** and confirm **Publish assessment?**.",
+              "detail": "Students can then attempt it, and it can no longer be edited."
+            }
+          ],
+          "result": [
+            "A published assessment that produces skill scores."
+          ],
+          "problems": [
+            {
+              "problem": "You need to change a published assessment.",
+              "fix": "Click **New version** to copy it into a new draft; **Archive** retires the old one (students can no longer start it)."
+            },
+            {
+              "problem": "Delete is missing.",
+              "fix": "Only drafts with no attempts can be deleted."
+            }
+          ],
+          "next": "a-bank"
+        },
+        {
+          "id": "a-bank",
+          "title": "5. Browse the question bank",
+          "audience": "Admin or Faculty",
+          "path": "/admin/question-bank",
+          "summary": "See all questions across assessments.",
+          "before": [
+            "At least one assessment with questions."
+          ],
+          "steps": [
+            {
+              "do": "Click **Question bank** in the top menu."
+            },
+            {
+              "do": "Filter by **Skill**, **Difficulty** or **Assessment** to review coverage."
+            },
+            {
+              "do": "Use it to spot skills or difficulties with too few questions, then add questions inside the relevant assessment (procedure 4)."
+            }
+          ],
+          "result": [
+            "Confidence that every skill has enough questions."
+          ],
+          "problems": [],
+          "next": "a-resources"
+        },
+        {
+          "id": "a-resources",
+          "title": "6. Add and approve learning resources",
+          "audience": "Admin or Faculty",
+          "path": "/admin/learning-resources",
+          "summary": "Courses and links the 30-day plan is built from.",
+          "before": [
+            "Skills exist (step 1)."
+          ],
+          "steps": [
+            {
+              "do": "Click **Learning resources** in the top menu."
+            },
+            {
+              "do": "Choose the **Skill**, enter **Title** and **URL** (starts with https://), optionally a **Description**, then click **Add resource**."
+            },
+            {
+              "do": "In the list click **Approve** on a resource and confirm **Approve this resource?**.",
+              "detail": "Only approved resources are shown to students and used in plans. **Unapprove** withdraws one."
+            },
+            {
+              "do": "Use **Filter by skill** and **Approval** to find resources still waiting."
+            }
+          ],
+          "result": [
+            "Approved material the plan generator can use."
+          ],
+          "problems": [
+            {
+              "problem": "A student's plan has no resource for a skill.",
+              "fix": "Add and approve a resource for that skill."
+            }
+          ],
+          "next": "a-iq"
+        },
+        {
+          "id": "a-iq",
+          "title": "7. Add interview questions with a rubric",
+          "audience": "Admin or Faculty",
+          "path": "/admin/interview-questions",
+          "summary": "Questions used in mock interviews, scored against a rubric.",
+          "before": [
+            "Career roles exist (step 2) if you want role-specific questions."
+          ],
+          "steps": [
+            {
+              "do": "Click **Interview questions** in the top menu."
+            },
+            {
+              "do": "Enter the **Prompt**, **Competency** and **Minimum words**; optionally choose **Role** and **Skill**."
+            },
+            {
+              "do": "Fill the rubric: the points a good answer should cover (the keywords or criteria used to score it)."
+            },
+            {
+              "do": "Click **Create question**."
+            },
+            {
+              "do": "Use **Filter by role** and **Status** to review the list."
+            }
+          ],
+          "result": [
+            "Mock interviews can be scored."
+          ],
+          "problems": [
+            {
+              "problem": "A student gets 'no questions'.",
+              "fix": "Add active questions for that role or generic ones (no role)."
+            }
+          ],
+          "next": "a-companies"
+        },
+        {
+          "id": "a-companies",
+          "title": "8. Add companies",
+          "audience": "Admin or TPO",
+          "path": "/admin/companies",
+          "summary": "The recruiting companies jobs belong to.",
+          "before": [],
+          "steps": [
+            {
+              "do": "Click **Companies** in the top menu."
+            },
+            {
+              "do": "Enter **Company name**, optionally **Description** and **Website**, and click **Create company**."
+            },
+            {
+              "do": "Use **Deactivate** or **Reactivate** to hide a company without deleting it; **Delete** removes it permanently."
+            }
+          ],
+          "result": [
+            "Companies to attach jobs to."
+          ],
+          "problems": [],
+          "next": "a-jobs"
+        },
+        {
+          "id": "a-jobs",
+          "title": "9. Create a job with skills and eligibility, then publish",
+          "audience": "Admin or TPO",
+          "path": "/admin/jobs",
+          "summary": "Postings students see, with eligibility checked separately from readiness.",
+          "before": [
+            "A company (step 8) and, ideally, a career role (step 2)."
+          ],
+          "steps": [
+            {
+              "do": "Click **Jobs** in the top menu, then **New job**."
+            },
+            {
+              "do": "Choose the **Company**, enter **Job title** and **Job description**, optionally a **Career role** and an **Application deadline** (a date), then click **Create job**.",
+              "expect": "'Job created as a draft.' Students cannot see it yet."
+            },
+            {
+              "do": "Open the job (click **Manage job ...**)."
+            },
+            {
+              "do": "Set the required skills: **Add a skill**, **Required level**, **Weight**, then **Save skills**."
+            },
+            {
+              "do": "Set the eligibility rule: **Departments**, **Minimum CGPA** (0-10) with its **CGPA basis** (for example Latest semester or Average of all semesters), **Maximum arrears**, **Minimum attendance %** (0-100) and **Graduation years** (comma-separated, for example 2026, 2027). Click **Save eligibility rule**.",
+              "detail": "Leave a field empty to apply no rule for it. **Remove rule** deletes the whole rule."
+            },
+            {
+              "do": "Click **Publish** and confirm.",
+              "expect": "The job is visible to students, with Met / Not met / Unknown per criterion."
+            }
+          ],
+          "result": [
+            "A live job posting with its eligibility rule."
+          ],
+          "problems": [
+            {
+              "problem": "You closed a job by mistake.",
+              "fix": "Closing is permanent: a closed job cannot be edited or reopened. Create a new job instead."
+            },
+            {
+              "problem": "Delete is not offered.",
+              "fix": "Only draft jobs can be deleted."
+            }
+          ],
+          "next": "a-knowledge"
+        },
+        {
+          "id": "a-knowledge",
+          "title": "10. Upload and approve knowledge documents",
+          "audience": "Admin or Faculty",
+          "path": "/admin/knowledge",
+          "summary": "Guides and policies that Knowledge search and the Assistant can cite.",
+          "before": [],
+          "steps": [
+            {
+              "do": "Click **Knowledge base** in the top menu."
+            },
+            {
+              "do": "Enter **Title**, choose **Source type**, optionally a **Department**, choose the **Document file** (PDF, DOCX, TXT or MD) and click **Upload document**.",
+              "expect": "The document appears as Pending."
+            },
+            {
+              "do": "Click the document to check its **Chunks** (the passages it was split into), then **Close details**."
+            },
+            {
+              "do": "Click **Approve** and confirm **Approve this document?**.",
+              "detail": "Only approved documents are searchable or citable. **Archive** removes it from search; **Delete** removes it and its chunks."
+            }
+          ],
+          "result": [
+            "Cited answers in Knowledge search and the Assistant."
+          ],
+          "problems": [
+            {
+              "problem": "Upload rejected.",
+              "fix": "Only PDF, DOCX, TXT and MD under 10 MB are accepted; scanned images need selectable text (no OCR)."
+            }
+          ],
+          "next": "a-hod"
+        },
+        {
+          "id": "a-hod",
+          "title": "11. Assign a HOD to departments",
+          "audience": "Admin",
+          "path": "/admin/hod-assignments",
+          "summary": "Which departments each HOD sees on their dashboard.",
+          "before": [
+            "A user whose role is HOD (set it first on the Users and students page)."
+          ],
+          "steps": [
+            {
+              "do": "Click **HOD assignments** in the left menu."
+            },
+            {
+              "do": "Choose the **HOD** from the list (it shows only users whose role is HOD) and the **Department**, then click **Add assignment**."
+            },
+            {
+              "do": "To undo, click **Remove** on the row and **Confirm remove**."
+            }
+          ],
+          "result": [
+            "The HOD dashboard shows aggregates for those departments."
+          ],
+          "problems": [
+            {
+              "problem": "The HOD list is empty ('No HOD users yet').",
+              "fix": "Nobody has the HOD role yet. Open **Users and students**, click **Change role** on the person and choose HOD."
+            }
+          ],
+          "next": "a-mcp"
+        },
+        {
+          "id": "a-mcp",
+          "title": "12. Choose which data tools the Assistant may use",
+          "audience": "Admin",
+          "path": "/admin/mcp-tools",
+          "summary": "Switch the Assistant's read-only data tools on or off for your college.",
+          "before": [],
+          "steps": [
+            {
+              "do": "Click **MCP tools** in the top menu."
+            },
+            {
+              "do": "Use the switch next to a tool (**Enable ...**) to turn it on or off. Each tool is limited to the roles shown."
+            }
+          ],
+          "result": [
+            "Control over what the Assistant may read. Turning a tool off stops the Assistant using it."
+          ],
+          "problems": [],
+          "next": "a-verify"
+        },
+        {
+          "id": "a-verify",
+          "title": "13. Test the student journey before announcing",
+          "audience": "Admin",
+          "path": null,
+          "summary": "Walk the whole path once as a student.",
+          "before": [
+            "Steps 1 to 12 done."
+          ],
+          "steps": [
+            {
+              "do": "Register a test student (Register a new account) and log in in a private window."
+            },
+            {
+              "do": "Complete onboarding, then take a published assessment."
+            },
+            {
+              "do": "Open **Readiness**, choose a role, click **Compute / refresh**; then open **Skill gaps**."
+            },
+            {
+              "do": "Generate a 30-day plan; open **Jobs** and check eligibility."
+            },
+            {
+              "do": "Fix whatever is missing upstream and repeat."
+            }
+          ],
+          "result": [
+            "Confidence that the numbers look sensible."
+          ],
+          "problems": [
+            {
+              "problem": "'Not enough evidence yet'.",
+              "fix": "The role's skills are not covered by a published assessment the student attempted."
+            }
+          ]
+        },
+        {
+          "id": "a-staff",
+          "title": "Users and students: see who registered and set roles",
+          "audience": "Admin",
+          "path": "/admin/users",
+          "summary": "See everyone in your college, create Faculty, TPO, HOD and Admin accounts by changing a role, and assign students to faculty.",
+          "before": [
+            "People have registered normally (everyone starts as a Student)."
+          ],
+          "steps": [
+            {
+              "do": "Click **Users and students** in the left menu.",
+              "expect": "A table of everyone in your college: name, email, role, department, roll number, graduation year, whether the student's profile is complete, and the join date."
+            },
+            {
+              "do": "Find people with **Search name, email or roll number**, the **Role** filter and the **Student department** filter, then click **Search**.",
+              "detail": "Results are paged (25 per page) with **Previous** and **Next**."
+            },
+            {
+              "do": "To make someone Faculty, TPO, HOD or Admin, click **Change role** on their row, choose the **New role**, and click **Apply**."
+            },
+            {
+              "do": "Read the confirmation and click **Change role**.",
+              "expect": "'<Name> is now <Role>.' The change applies immediately, even to someone already signed in.",
+              "detail": "Leaving Faculty removes that person's faculty-to-student assignments; leaving HOD removes their department assignments. The screen tells you how many were removed."
+            },
+            {
+              "do": "Open the **Faculty assignments** tab to give a faculty member their students: choose the **Faculty member**, type a name, email or roll number in **Find a student**, click **Find student**, pick the **Student**, then click **Add assignment**."
+            },
+            {
+              "do": "To undo an assignment click **Remove** on its row and **Confirm remove**."
+            }
+          ],
+          "result": [
+            "Staff users who can use the staff pages, and faculty who see their assigned students."
+          ],
+          "problems": [
+            {
+              "problem": "There is no Change role button on a row.",
+              "fix": "You cannot change your own role, and a super-admin account cannot be changed from here."
+            },
+            {
+              "problem": "'You cannot change your own role'.",
+              "fix": "Ask another admin to change it; this prevents locking yourself out."
+            },
+            {
+              "problem": "A faculty member's dashboard is empty.",
+              "fix": "They have no students assigned yet: use the Faculty assignments tab."
+            }
+          ],
+          "next": "c-overview",
+          "note": "Every role change is written to the audit log. Student names and emails are personal data: only promote people you trust to Admin."
+        }
+      ]
+    },
+    {
+      "id": "config",
+      "title": "College configuration (with samples)",
+      "intro": "Everything the college decides before students see useful results. All values in the sample tables are examples to show the format, not recommendations: your college chooses its own.",
+      "procedures": [
+        {
+          "id": "c-overview",
+          "title": "What the college configures: the checklist",
+          "audience": "Admin",
+          "path": null,
+          "summary": "Every configurable item, where it lives, what it depends on and what it changes for students.",
+          "before": [],
+          "steps": [],
+          "tables": [
+            {
+              "title": "Configuration checklist (in dependency order)",
+              "columns": [
+                "#",
+                "What",
+                "Where in the app",
+                "Who",
+                "Needs first",
+                "What students see once it is done"
+              ],
+              "rows": [
+                [
+                  "1",
+                  "Departments",
+                  "Set at install (API for later additions)",
+                  "Operator / Admin",
+                  "Nothing",
+                  "A department list to choose from in onboarding"
+                ],
+                [
+                  "2",
+                  "Skill categories and skills",
+                  "Skills",
+                  "Admin",
+                  "Departments (for department-scoped categories)",
+                  "Skill names on scores, gaps and plans"
+                ],
+                [
+                  "3",
+                  "Career roles and required skills",
+                  "Career roles",
+                  "Admin",
+                  "Skills",
+                  "A list of roles to explore, and the target for gaps"
+                ],
+                [
+                  "4",
+                  "Readiness rule (weights, levels, gap thresholds)",
+                  "Readiness rules",
+                  "Admin",
+                  "Skill categories, roles",
+                  "Readiness level and gap priority"
+                ],
+                [
+                  "5",
+                  "Assessments and questions",
+                  "Assessments, Question bank",
+                  "Admin or Faculty",
+                  "Skills",
+                  "Tests to take; skill scores"
+                ],
+                [
+                  "6",
+                  "Learning resources (approved)",
+                  "Learning resources",
+                  "Admin or Faculty",
+                  "Skills",
+                  "Items in the 30-day plan"
+                ],
+                [
+                  "7",
+                  "Interview questions and rubrics",
+                  "Interview questions",
+                  "Admin or Faculty",
+                  "Roles (optional)",
+                  "Mock interviews with scoring"
+                ],
+                [
+                  "8",
+                  "Companies",
+                  "Companies",
+                  "Admin or TPO",
+                  "Nothing",
+                  "Company names on jobs"
+                ],
+                [
+                  "9",
+                  "Jobs, required skills, eligibility rules",
+                  "Jobs",
+                  "Admin or TPO",
+                  "Companies, roles",
+                  "Job list with Met / Not met / Unknown"
+                ],
+                [
+                  "10",
+                  "Knowledge documents (approved)",
+                  "Knowledge base",
+                  "Admin or Faculty",
+                  "Nothing",
+                  "Cited answers in Assistant and Knowledge search"
+                ],
+                [
+                  "11",
+                  "HOD department assignments",
+                  "HOD assignments",
+                  "Admin",
+                  "A user with the HOD role (set on Users and students)",
+                  "HOD dashboard for those departments"
+                ],
+                [
+                  "12",
+                  "Faculty to student assignments",
+                  "Users and students, Faculty assignments tab",
+                  "Admin",
+                  "A user with the Faculty role (set on Users and students)",
+                  "Faculty dashboard lists those students"
+                ],
+                [
+                  "13",
+                  "Assistant data tools on/off",
+                  "MCP tools",
+                  "Admin",
+                  "Nothing",
+                  "What the Assistant is allowed to read"
+                ],
+                [
+                  "14",
+                  "Technical settings",
+                  "Server environment (not in the app)",
+                  "Operator",
+                  "Nothing",
+                  "Limits such as upload size and sign-in rate limits"
+                ]
+              ],
+              "caption": "Work top to bottom: later rows depend on earlier ones."
+            }
+          ],
+          "result": [
+            "A complete picture of what must be configured, who does it and in what order."
+          ],
+          "problems": [],
+          "next": "c-departments"
+        },
+        {
+          "id": "c-departments",
+          "title": "Departments",
+          "audience": "Admin / operator",
+          "path": null,
+          "summary": "The departments in your college. Nothing is hard-coded: the app has no built-in department list.",
+          "before": [],
+          "steps": [
+            {
+              "do": "The operator creates departments when installing (the **--departments** option of the seed command, written as Name:CODE pairs separated by commas)."
+            },
+            {
+              "do": "Departments added later are created through the API (**POST /api/v1/admin/departments**); there is no screen yet."
+            }
+          ],
+          "tables": [
+            {
+              "title": "Sample departments",
+              "columns": [
+                "Department name",
+                "Code"
+              ],
+              "rows": [
+                [
+                  "Computer Science",
+                  "CSE"
+                ],
+                [
+                  "Electronics and Communication",
+                  "ECE"
+                ],
+                [
+                  "Mechanical",
+                  "MECH"
+                ],
+                [
+                  "Civil",
+                  "CIVIL"
+                ]
+              ],
+              "caption": "Example only. Use your own departments and codes."
+            }
+          ],
+          "result": [
+            "Students pick their department in onboarding; skill categories, assessments and job eligibility can be limited to departments."
+          ],
+          "problems": [
+            {
+              "problem": "A student cannot find their department.",
+              "fix": "It has not been created yet; ask the operator."
+            }
+          ],
+          "next": "c-skills"
+        },
+        {
+          "id": "c-skills",
+          "title": "Skill categories and skills",
+          "audience": "Admin",
+          "path": "/admin/skills",
+          "summary": "The shared vocabulary for assessments, roles, resources, resumes and jobs.",
+          "before": [],
+          "steps": [
+            {
+              "do": "On **Skills**, add each category with **Category name** and **Scope** (Common, or Department plus the **Department**), then **Add category**."
+            },
+            {
+              "do": "Add each skill with **Skill name**, its **Category** and an optional **Description**, then **Add skill**."
+            }
+          ],
+          "tables": [
+            {
+              "title": "Sample skill setup",
+              "columns": [
+                "Category",
+                "Scope",
+                "Skills"
+              ],
+              "rows": [
+                [
+                  "Programming",
+                  "Common",
+                  "Python, Data Structures, SQL"
+                ],
+                [
+                  "Aptitude",
+                  "Common",
+                  "Quantitative aptitude, Logical reasoning"
+                ],
+                [
+                  "Communication",
+                  "Common",
+                  "Written communication, Presentation"
+                ],
+                [
+                  "Embedded Systems",
+                  "Department: ECE",
+                  "C for microcontrollers, RTOS basics"
+                ],
+                [
+                  "Thermodynamics",
+                  "Department: MECH",
+                  "Heat transfer, Fluid mechanics"
+                ]
+              ],
+              "caption": "Example only. Category weights in the readiness rule apply per category, so group skills the way you want them weighted."
+            }
+          ],
+          "result": [
+            "A skill list that every other item refers to."
+          ],
+          "problems": [
+            {
+              "problem": "Two skills with almost the same name.",
+              "fix": "Keep one name per skill; scores, gaps, resumes and jobs all match by skill."
+            }
+          ],
+          "next": "c-roles"
+        },
+        {
+          "id": "c-roles",
+          "title": "Career roles and required skills",
+          "audience": "Admin",
+          "path": "/admin/career-roles",
+          "summary": "What each role needs. This is the yardstick for role readiness and skill gaps.",
+          "before": [],
+          "steps": [
+            {
+              "do": "On **Career roles** click **New role**; enter **Role name**, optional **Department** and **Description**, keep **Active** ticked; **Create role**."
+            },
+            {
+              "do": "Add skills with **Add a skill**; set **Required level** (0 to 100) and **Weight** (above 0) for each; **Save skills**."
+            }
+          ],
+          "tables": [
+            {
+              "title": "Sample role: Backend Developer",
+              "columns": [
+                "Required skill",
+                "Required level",
+                "Weight"
+              ],
+              "rows": [
+                [
+                  "Python",
+                  "70",
+                  "2"
+                ],
+                [
+                  "SQL",
+                  "65",
+                  "2"
+                ],
+                [
+                  "Data Structures",
+                  "60",
+                  "1.5"
+                ],
+                [
+                  "Written communication",
+                  "50",
+                  "0.5"
+                ]
+              ],
+              "caption": "Required level is the target (0 to 100). Weight is how much the skill counts toward this role's score. New rows start at level 60, weight 1."
+            }
+          ],
+          "result": [
+            "Students can explore the role, and readiness and gaps are measured against these levels."
+          ],
+          "problems": [
+            {
+              "problem": "A role shows no gaps.",
+              "fix": "It has no required skills yet."
+            }
+          ],
+          "next": "c-rule"
+        },
+        {
+          "id": "c-rule",
+          "title": "Readiness rule: weights, levels and gap thresholds",
+          "audience": "Admin",
+          "path": "/admin/readiness-rules",
+          "summary": "There are no default numbers. The college defines them, and every change creates a new version.",
+          "before": [
+            "Skill categories and career roles exist."
+          ],
+          "steps": [
+            {
+              "do": "On **Readiness rules** click **Create new version**."
+            },
+            {
+              "do": "Enter a weight per skill category, the level names with their **Minimum score**, and the two gap thresholds; **Create version**; then **Activate** it."
+            }
+          ],
+          "tables": [
+            {
+              "title": "Sample rule: category weights (general readiness)",
+              "columns": [
+                "Skill category",
+                "Weight"
+              ],
+              "rows": [
+                [
+                  "Programming",
+                  "50"
+                ],
+                [
+                  "Aptitude",
+                  "30"
+                ],
+                [
+                  "Communication",
+                  "20"
+                ]
+              ],
+              "caption": "Weights are relative to each other; a blank category is left out."
+            },
+            {
+              "title": "Sample rule: level thresholds",
+              "columns": [
+                "Level name",
+                "Starts at (minimum score)"
+              ],
+              "rows": [
+                [
+                  "Needs improvement",
+                  "0"
+                ],
+                [
+                  "Developing",
+                  "50"
+                ],
+                [
+                  "Strong",
+                  "75"
+                ]
+              ],
+              "caption": "A student's level is the one with the highest minimum score that their overall score reaches. One level must start at 0."
+            },
+            {
+              "title": "Sample rule: gap thresholds",
+              "columns": [
+                "Setting",
+                "Value"
+              ],
+              "rows": [
+                [
+                  "High priority at gap of at least",
+                  "20"
+                ],
+                [
+                  "Medium priority at gap of at least",
+                  "10"
+                ]
+              ],
+              "caption": "Any gap above 0 but below the Medium value is Low priority."
+            },
+            {
+              "title": "Worked example: skill gaps (required level 70)",
+              "columns": [
+                "Student's skill score",
+                "Gap",
+                "Result"
+              ],
+              "rows": [
+                [
+                  "45",
+                  "25",
+                  "High priority (25 is at least 20)"
+                ],
+                [
+                  "58",
+                  "12",
+                  "Medium priority"
+                ],
+                [
+                  "64",
+                  "6",
+                  "Low priority"
+                ],
+                [
+                  "75",
+                  "0",
+                  "Ready, no action needed"
+                ],
+                [
+                  "no assessment yet",
+                  "-",
+                  "Unassessed (never treated as 0)"
+                ]
+              ],
+              "caption": "gap = max(required level - score, 0)."
+            },
+            {
+              "title": "Worked example: role readiness for Backend Developer",
+              "columns": [
+                "Skill",
+                "Weight",
+                "Student's score",
+                "Counted?"
+              ],
+              "rows": [
+                [
+                  "Python",
+                  "2",
+                  "80",
+                  "Yes"
+                ],
+                [
+                  "SQL",
+                  "2",
+                  "50",
+                  "Yes"
+                ],
+                [
+                  "Data Structures",
+                  "1.5",
+                  "no evidence",
+                  "No"
+                ],
+                [
+                  "Written communication",
+                  "0.5",
+                  "no evidence",
+                  "No"
+                ]
+              ],
+              "caption": "Role score = weighted mean over skills with evidence = (80x2 + 50x2) / 4 = 65.00, which is Developing in the sample levels. Coverage = weight with evidence / total weight = 4 / 6 = 66.67%, shown next to the score so a thin result is visible. Skills with no evidence are left out, never counted as 0."
+            }
+          ],
+          "result": [
+            "Readiness levels and gap priorities can now be computed; each result is stamped with the rule version."
+          ],
+          "problems": [
+            {
+              "problem": "You want different weights next term.",
+              "fix": "Create a new version and activate it. Old results keep the version they used."
+            },
+            {
+              "problem": "Nobody gets a readiness score.",
+              "fix": "No rule is active, or students have no assessment results for the skills."
+            }
+          ],
+          "note": "Weights and thresholds are institutional policy. Agree them with your placement and academic leads before activating.",
+          "next": "c-assessments"
+        },
+        {
+          "id": "c-assessments",
+          "title": "Assessments and questions",
+          "audience": "Admin or Faculty",
+          "path": "/admin/assessments",
+          "summary": "Tests that produce skill scores. Scoring is fixed by rules; negative marking is configurable.",
+          "before": [
+            "Skills exist."
+          ],
+          "steps": [
+            {
+              "do": "On **Assessments** fill **Title**, **Type**, optional **Department**, **Time limit (minutes, optional)**, **Max attempts (optional)** and **Negative marking (0 to 1)**; **Create assessment**."
+            },
+            {
+              "do": "Open it, **Add question** for each question, then **Publish**."
+            }
+          ],
+          "tables": [
+            {
+              "title": "Sample assessment settings",
+              "columns": [
+                "Setting",
+                "Sample value",
+                "Meaning"
+              ],
+              "rows": [
+                [
+                  "Title",
+                  "Python Fundamentals Test 1",
+                  "Shown to students"
+                ],
+                [
+                  "Type",
+                  "TECHNICAL",
+                  "One of APTITUDE, TECHNICAL, COMMUNICATION, ROLE_SPECIFIC, DEPARTMENT_SPECIFIC, CUSTOM"
+                ],
+                [
+                  "Department",
+                  "(none)",
+                  "Leave empty for all departments"
+                ],
+                [
+                  "Time limit",
+                  "30",
+                  "Minutes; empty means untimed"
+                ],
+                [
+                  "Max attempts",
+                  "3",
+                  "Empty means unlimited"
+                ],
+                [
+                  "Negative marking (0 to 1)",
+                  "0.25",
+                  "A wrong answer loses 0.25 x the question's marks; 0 means none"
+                ]
+              ]
+            },
+            {
+              "title": "Sample question",
+              "columns": [
+                "Field",
+                "Sample value"
+              ],
+              "rows": [
+                [
+                  "Question",
+                  "Which keyword defines a function in Python?"
+                ],
+                [
+                  "Skill",
+                  "Python"
+                ],
+                [
+                  "Difficulty",
+                  "EASY (options: EASY, MEDIUM, HARD)"
+                ],
+                [
+                  "Marks",
+                  "1"
+                ],
+                [
+                  "Options",
+                  "A: func   B: def (correct)   C: function   D: lambda only"
+                ]
+              ],
+              "caption": "Several options can be marked correct; the student must choose exactly the correct set (no partial credit)."
+            },
+            {
+              "title": "Worked example: scoring one attempt (10 questions, 1 mark each, negative marking 0.25)",
+              "columns": [
+                "Outcome",
+                "Questions",
+                "Marks"
+              ],
+              "rows": [
+                [
+                  "Correct",
+                  "6",
+                  "+6.00"
+                ],
+                [
+                  "Wrong",
+                  "3",
+                  "-0.75 (3 x 0.25)"
+                ],
+                [
+                  "Unanswered",
+                  "1",
+                  "0.00"
+                ],
+                [
+                  "Total",
+                  "10",
+                  "5.25 out of 10 = 52.50%"
+                ]
+              ],
+              "caption": "Scores never go below 0. A skill's stored score is the percentage from the latest attempt that covered it."
+            }
+          ],
+          "result": [
+            "Published assessments produce the skill scores everything else is built on."
+          ],
+          "problems": [
+            {
+              "problem": "You need to change a published test.",
+              "fix": "Use New version; Archive the old one."
+            }
+          ],
+          "next": "c-resources"
+        },
+        {
+          "id": "c-resources",
+          "title": "Learning resources",
+          "audience": "Admin or Faculty",
+          "path": "/admin/learning-resources",
+          "summary": "The approved material the 30-day plan is built from.",
+          "before": [
+            "Skills exist."
+          ],
+          "steps": [
+            {
+              "do": "On **Learning resources** choose the **Skill**, enter **Title** and **URL**, optional **Description**; **Add resource**."
+            },
+            {
+              "do": "Click **Approve** on each resource you trust. Unapproved ones are never shown to students."
+            }
+          ],
+          "tables": [
+            {
+              "title": "Sample resources",
+              "columns": [
+                "Skill",
+                "Title",
+                "URL",
+                "Approved"
+              ],
+              "rows": [
+                [
+                  "Python",
+                  "Python tutorial (official docs)",
+                  "https://docs.python.org/3/tutorial/",
+                  "Yes"
+                ],
+                [
+                  "SQL",
+                  "SQL practice problems",
+                  "https://example.org/sql-practice",
+                  "Yes"
+                ],
+                [
+                  "Logical reasoning",
+                  "Weekly reasoning drill (college portal)",
+                  "https://example.org/reasoning",
+                  "No (pending review)"
+                ]
+              ],
+              "caption": "Example links only; use your own vetted resources."
+            }
+          ],
+          "result": [
+            "Students get plan items only from approved resources; a skill with none gets no item."
+          ],
+          "problems": [],
+          "next": "c-interview"
+        },
+        {
+          "id": "c-interview",
+          "title": "Interview questions and rubrics",
+          "audience": "Admin or Faculty",
+          "path": "/admin/interview-questions",
+          "summary": "Mock-interview questions scored by a keyword rubric (not by an AI).",
+          "before": [],
+          "steps": [
+            {
+              "do": "On **Interview questions** enter **Prompt**, **Competency**, **Minimum words** and optionally **Role** and **Skill**."
+            },
+            {
+              "do": "Add rubric concepts: each has a name, **keywords** and a **weight**. **Create question**."
+            }
+          ],
+          "tables": [
+            {
+              "title": "Sample question and rubric",
+              "columns": [
+                "Concept",
+                "Keywords",
+                "Weight"
+              ],
+              "rows": [
+                [
+                  "Defines a primary key",
+                  "unique, identifier, primary key",
+                  "3"
+                ],
+                [
+                  "Mentions no duplicates or nulls",
+                  "duplicate, null",
+                  "2"
+                ],
+                [
+                  "Gives an example",
+                  "example, for instance, e.g.",
+                  "1"
+                ]
+              ],
+              "caption": "Prompt: 'What is a primary key in a database?'  Competency: Technical.  Minimum words: 20."
+            },
+            {
+              "title": "Worked example: scoring an answer",
+              "columns": [
+                "Concepts the answer mentioned",
+                "Weights covered",
+                "Question score"
+              ],
+              "rows": [
+                [
+                  "Primary key definition and no duplicates",
+                  "3 + 2 = 5 of 6",
+                  "83.33"
+                ],
+                [
+                  "Only the example",
+                  "1 of 6",
+                  "16.67"
+                ]
+              ],
+              "caption": "Score = weights of covered concepts / total weights x 100. A concept is covered when any of its keywords appears in the answer."
+            }
+          ],
+          "result": [
+            "Mock interviews return a score per question, plus a disclaimer that it is practice feedback."
+          ],
+          "problems": [],
+          "next": "c-jobs"
+        },
+        {
+          "id": "c-jobs",
+          "title": "Companies, jobs and eligibility rules",
+          "audience": "Admin or TPO",
+          "path": "/admin/jobs",
+          "summary": "What students see for each posting, and the rules eligibility is checked against.",
+          "before": [
+            "A company exists; ideally a career role."
+          ],
+          "steps": [
+            {
+              "do": "On **Companies** add the company; on **Jobs** click **New job** and fill the details."
+            },
+            {
+              "do": "Open the job: set required skills and the eligibility rule, then **Publish**."
+            }
+          ],
+          "tables": [
+            {
+              "title": "Sample company and job",
+              "columns": [
+                "Field",
+                "Sample value"
+              ],
+              "rows": [
+                [
+                  "Company",
+                  "Acme Software (website https://example.com)"
+                ],
+                [
+                  "Job title",
+                  "Graduate Backend Engineer"
+                ],
+                [
+                  "Career role",
+                  "Backend Developer"
+                ],
+                [
+                  "Application deadline",
+                  "2026-12-15 (a date; no time)"
+                ],
+                [
+                  "Required skills",
+                  "Python (level 65, weight 2), SQL (level 60, weight 1)"
+                ]
+              ]
+            },
+            {
+              "title": "Sample eligibility rule",
+              "columns": [
+                "Field",
+                "Sample value",
+                "Notes"
+              ],
+              "rows": [
+                [
+                  "Minimum CGPA",
+                  "7.0",
+                  "On a 0 to 10 scale"
+                ],
+                [
+                  "CGPA basis",
+                  "Latest semester",
+                  "Other option: Average of all semesters"
+                ],
+                [
+                  "Maximum arrears",
+                  "0",
+                  "Active arrears allowed"
+                ],
+                [
+                  "Minimum attendance %",
+                  "75",
+                  "0 to 100"
+                ],
+                [
+                  "Departments",
+                  "CSE, ECE",
+                  "Empty means all"
+                ],
+                [
+                  "Graduation years",
+                  "2026, 2027",
+                  "Empty means all"
+                ]
+              ],
+              "caption": "Leave a field empty to apply no rule for it."
+            },
+            {
+              "title": "What three sample students see",
+              "columns": [
+                "Student",
+                "CGPA (latest)",
+                "Arrears",
+                "Attendance",
+                "Result per rule",
+                "Overall badge"
+              ],
+              "rows": [
+                [
+                  "Asha",
+                  "8.1",
+                  "0",
+                  "82%",
+                  "CGPA Met, Arrears Met, Attendance Met",
+                  "Meets configured criteria"
+                ],
+                [
+                  "Ravi",
+                  "6.8",
+                  "0",
+                  "90%",
+                  "CGPA Not met, others Met",
+                  "Does not meet configured criteria"
+                ],
+                [
+                  "Meena",
+                  "7.5",
+                  "0",
+                  "(not entered)",
+                  "CGPA Met, Arrears Met, Attendance Unknown",
+                  "Some data missing"
+                ]
+              ],
+              "caption": "Unknown means data is missing, not failure. Eligibility is never part of readiness. A job with no rule shows 'No automatic criteria'."
+            }
+          ],
+          "result": [
+            "Students see the job with eligibility per rule and a skill-fit view."
+          ],
+          "problems": [
+            {
+              "problem": "A closed job needs to come back.",
+              "fix": "Closing is permanent. Create a new job."
+            }
+          ],
+          "next": "c-knowledge"
+        },
+        {
+          "id": "c-knowledge",
+          "title": "Knowledge documents",
+          "audience": "Admin or Faculty",
+          "path": "/admin/knowledge",
+          "summary": "Documents the Assistant and Knowledge search may cite. Only approved ones are searchable.",
+          "before": [],
+          "steps": [
+            {
+              "do": "On **Knowledge base** enter **Title**, choose **Source type**, optional **Department**, pick the **Document file**; **Upload document**."
+            },
+            {
+              "do": "Check the **Chunks**, then **Approve** it."
+            }
+          ],
+          "tables": [
+            {
+              "title": "Source types and samples",
+              "columns": [
+                "Source type",
+                "Sample document"
+              ],
+              "rows": [
+                [
+                  "SYLLABUS",
+                  "B.Tech CSE syllabus 2024"
+                ],
+                [
+                  "CURRICULUM",
+                  "Curriculum overview"
+                ],
+                [
+                  "LEARNING_MATERIAL",
+                  "Database design notes"
+                ],
+                [
+                  "PLACEMENT_GUIDE",
+                  "Placement process and timeline"
+                ],
+                [
+                  "INTERVIEW_GUIDE",
+                  "Technical interview preparation guide"
+                ],
+                [
+                  "POLICY",
+                  "Placement eligibility policy"
+                ],
+                [
+                  "OTHER",
+                  "Anything else"
+                ]
+              ],
+              "caption": "Accepted files: PDF, DOCX, TXT, MD up to 10 MB with selectable text."
+            }
+          ],
+          "result": [
+            "Cited answers; with nothing approved on a topic the Assistant says it does not have enough approved information."
+          ],
+          "problems": [],
+          "next": "c-access"
+        },
+        {
+          "id": "c-access",
+          "title": "Who sees what: HODs, faculty and Assistant tools",
+          "audience": "Admin / operator",
+          "path": "/admin/hod-assignments",
+          "summary": "Assignments and switches that scope what staff and the Assistant can read.",
+          "before": [
+            "Users with the Faculty or HOD role (change roles on Users and students)."
+          ],
+          "steps": [
+            {
+              "do": "**HOD assignments:** choose the **HOD** and the **Department**, then **Add assignment**."
+            },
+            {
+              "do": "**Faculty assignments:** on **Users and students**, open the **Faculty assignments** tab and use **Add assignment**."
+            },
+            {
+              "do": "**MCP tools:** switch tools on or off for your college."
+            }
+          ],
+          "tables": [
+            {
+              "title": "Sample assignments",
+              "columns": [
+                "Who",
+                "Assigned to",
+                "Effect"
+              ],
+              "rows": [
+                [
+                  "HOD user 12",
+                  "CSE and ECE",
+                  "HOD dashboard shows aggregates for those two departments only"
+                ],
+                [
+                  "Faculty user 31",
+                  "Students 101, 102 and 103 (one assignment per faculty-student pair)",
+                  "Faculty dashboard lists exactly those three students"
+                ]
+              ]
+            },
+            {
+              "title": "The Assistant's data tools (all read-only)",
+              "columns": [
+                "Tool",
+                "What it reads",
+                "Roles"
+              ],
+              "rows": [
+                [
+                  "get_student_profile",
+                  "Name, department, roll number, graduation year",
+                  "Student, Faculty, TPO, Admin"
+                ],
+                [
+                  "get_student_academic_record",
+                  "Semester CGPA, arrears, attendance",
+                  "Student, Faculty, TPO, Admin"
+                ],
+                [
+                  "get_student_assessment_results",
+                  "Recent submitted results",
+                  "Student, Faculty, TPO, Admin"
+                ],
+                [
+                  "get_student_skill_scores",
+                  "Skill scores with evidence counts",
+                  "Student, Faculty, TPO, Admin"
+                ],
+                [
+                  "get_student_progress",
+                  "Plan progress and latest readiness summary",
+                  "Student, Faculty, TPO, Admin"
+                ],
+                [
+                  "get_department_details",
+                  "Department and its roles",
+                  "All roles"
+                ],
+                [
+                  "get_eligibility_rules",
+                  "A job's eligibility rule and the student's evaluation",
+                  "All roles"
+                ],
+                [
+                  "get_company_requirements",
+                  "A company and the skills of its open jobs",
+                  "All roles"
+                ],
+                [
+                  "get_job_description",
+                  "A job and its required skills",
+                  "All roles"
+                ]
+              ],
+              "caption": "A tool you switch off is no longer used by the Assistant. Students can only ever read their own records."
+            }
+          ],
+          "result": [
+            "Staff see only what they are assigned; the Assistant reads only what you allow."
+          ],
+          "problems": [
+            {
+              "problem": "A person is missing from the HOD or faculty list.",
+              "fix": "Their role has not been set yet: use Change role on Users and students."
+            }
+          ],
+          "next": "c-operator"
+        },
+        {
+          "id": "c-operator",
+          "title": "Technical settings (set by your operator)",
+          "audience": "Operator",
+          "path": null,
+          "summary": "Limits that are not on any screen. They are server settings, and the values below are the defaults.",
+          "before": [],
+          "steps": [],
+          "tables": [
+            {
+              "title": "Settings and defaults",
+              "columns": [
+                "Setting",
+                "Default",
+                "What it controls"
+              ],
+              "rows": [
+                [
+                  "ACCESS_TOKEN_EXPIRE_MINUTES",
+                  "30",
+                  "How long a sign-in token lasts before it refreshes"
+                ],
+                [
+                  "REFRESH_TOKEN_EXPIRE_DAYS",
+                  "7",
+                  "How long before a user must sign in again"
+                ],
+                [
+                  "PASSWORD_RESET_EXPIRE_MINUTES",
+                  "30",
+                  "How long a reset link works"
+                ],
+                [
+                  "LOGIN_RATE_LIMIT / REGISTER_RATE_LIMIT",
+                  "10 per minute",
+                  "Sign-in and sign-up attempts per IP"
+                ],
+                [
+                  "FORGOT_PASSWORD_RATE_LIMIT",
+                  "5 per minute",
+                  "Reset requests per IP"
+                ],
+                [
+                  "MAX_UPLOAD_MB",
+                  "10",
+                  "Largest resume or knowledge file"
+                ],
+                [
+                  "RAG_CHUNK_CHARS / RAG_CHUNK_OVERLAP_CHARS",
+                  "900 / 120",
+                  "How documents are split for search"
+                ],
+                [
+                  "RAG_MIN_QUERY_COVERAGE",
+                  "0.5",
+                  "Share of a question's words a passage must match to count"
+                ],
+                [
+                  "BCRYPT_ROUNDS",
+                  "12",
+                  "Password hashing cost (production minimum 10)"
+                ],
+                [
+                  "SMTP_HOST, SMTP_USER, SMTP_PASSWORD, SMTP_FROM",
+                  "(empty)",
+                  "Email for password reset; empty means no email"
+                ],
+                [
+                  "CORS_ORIGINS",
+                  "http://localhost:5173,...",
+                  "Which sites may call the API"
+                ]
+              ],
+              "caption": "The chunking and coverage defaults are unconfirmed assumptions; tune them once you have your real documents."
+            }
+          ],
+          "result": [],
+          "problems": [],
+          "next": "c-decisions"
+        },
+        {
+          "id": "c-decisions",
+          "title": "Decisions your college must make",
+          "audience": "Admin and leadership",
+          "path": null,
+          "summary": "Policy choices the application cannot make for you. Nothing here is pre-set.",
+          "before": [],
+          "steps": [],
+          "tables": [
+            {
+              "title": "Open decisions",
+              "columns": [
+                "Decision",
+                "Why it matters",
+                "Set in"
+              ],
+              "rows": [
+                [
+                  "Category weights",
+                  "Decide how much each skill category counts toward general readiness",
+                  "Readiness rules"
+                ],
+                [
+                  "Level names and cut-offs",
+                  "Decide what counts as Strong or Needs improvement",
+                  "Readiness rules"
+                ],
+                [
+                  "Gap thresholds",
+                  "Decide when a gap is High or Medium priority",
+                  "Readiness rules"
+                ],
+                [
+                  "Required level and weight per skill, per role",
+                  "Define what 'ready' means for each role",
+                  "Career roles"
+                ],
+                [
+                  "Attempts, time limits and negative marking",
+                  "Affects fairness and what scores mean",
+                  "Assessments"
+                ],
+                [
+                  "CGPA basis for eligibility",
+                  "Latest semester or the average of all semesters",
+                  "Jobs, eligibility rule"
+                ],
+                [
+                  "Who approves resources and documents",
+                  "Only approved items reach students",
+                  "Learning resources, Knowledge base"
+                ],
+                [
+                  "Faculty and HOD scope",
+                  "Which students and departments each can see",
+                  "Assignments"
+                ],
+                [
+                  "Retention and access to uploaded resumes",
+                  "Privacy policy for student documents",
+                  "Not configurable yet (open question)"
+                ]
+              ]
+            }
+          ],
+          "result": [
+            "A written set of choices to configure, agreed by the college."
+          ],
+          "problems": []
+        }
+      ]
+    },
+    {
+      "id": "student",
+      "title": "Student: step by step",
+      "procedures": [
+        {
+          "id": "s-onboarding",
+          "title": "1. Complete onboarding",
+          "audience": "Student",
+          "path": "/onboarding",
+          "summary": "A three-step wizard shown on your first login.",
+          "before": [
+            "You registered and logged in."
+          ],
+          "steps": [
+            {
+              "do": "Step 1 of 3, **Personal details**: enter **Roll number**, **Graduation year** and **Phone**, then click **Next**."
+            },
+            {
+              "do": "Step 2 of 3, **Academics**: add your semester records (see the next procedure for the fields), then **Next**. **Back** returns to the previous step."
+            },
+            {
+              "do": "Step 3 of 3, **Department**: choose your department and click **Confirm and finish**.",
+              "expect": "You are taken to your Dashboard."
+            }
+          ],
+          "result": [
+            "A complete profile. Until it is complete you are sent back here."
+          ],
+          "problems": [
+            {
+              "problem": "My department is not listed.",
+              "fix": "Ask your admin to add it."
+            }
+          ],
+          "next": "s-academics"
+        },
+        {
+          "id": "s-academics",
+          "title": "2. Keep your academic records accurate",
+          "audience": "Student",
+          "path": "/profile/academics",
+          "summary": "Semester CGPA, arrears and attendance. Job eligibility is calculated from these.",
+          "before": [
+            "Onboarding done."
+          ],
+          "steps": [
+            {
+              "do": "Click **Academics** in the menu."
+            },
+            {
+              "do": "Fill **Semester (1-12)**, **CGPA (0-10)**, **Active arrears** and **Attendance % (optional)**, then click **Add record**."
+            },
+            {
+              "do": "To correct one, choose it, change the values and click **Update record** (**Cancel** discards)."
+            }
+          ],
+          "result": [
+            "Accurate eligibility results."
+          ],
+          "problems": [
+            {
+              "problem": "Eligibility shows 'Unknown' or 'Some data missing'.",
+              "fix": "A value is missing, for example attendance. Add it here; nothing is guessed."
+            }
+          ],
+          "next": "s-projects"
+        },
+        {
+          "id": "s-projects",
+          "title": "3. Add projects and certifications",
+          "audience": "Student",
+          "path": "/profile/projects",
+          "summary": "Your work and certificates.",
+          "before": [],
+          "steps": [
+            {
+              "do": "Click **Projects & Certifications** in the menu."
+            },
+            {
+              "do": "Under **Add project** enter **Title**, optionally **Description** and **URL**, add the **Skills** you used, and click **Add project**."
+            },
+            {
+              "do": "Under **Add certification** enter **Name**, optionally **Issuer** and **Issued on**, and click **Add certification**."
+            },
+            {
+              "do": "Use **Delete** to remove an entry."
+            }
+          ],
+          "result": [
+            "A fuller profile."
+          ],
+          "problems": [],
+          "next": "s-assess"
+        },
+        {
+          "id": "s-assess",
+          "title": "4. Take an assessment",
+          "audience": "Student",
+          "path": "/assessments",
+          "summary": "Tests that produce your skill scores.",
+          "before": [
+            "Your admin has published assessments."
+          ],
+          "steps": [
+            {
+              "do": "Click **Assessments** in the menu.",
+              "expect": "Published tests are listed with their time limit and attempts."
+            },
+            {
+              "do": "Click **Start** (or **Resume** if you already began one)."
+            },
+            {
+              "do": "Answer the questions. **Question navigator** jumps between them; **Time remaining** and **Answered questions** show progress. Answers save as you go."
+            },
+            {
+              "do": "Click **Submit** and confirm **Submit your attempt?** with **Confirm submit**.",
+              "detail": "If time runs out the attempt is submitted for you."
+            },
+            {
+              "do": "Read the result page: your score and the **Skill breakdown**."
+            }
+          ],
+          "result": [
+            "Skill scores, the evidence everything else is built on."
+          ],
+          "problems": [
+            {
+              "problem": "'Attempt limit reached'.",
+              "fix": "The maximum attempts are used; ask your faculty or admin."
+            }
+          ],
+          "next": "s-history"
+        },
+        {
+          "id": "s-history",
+          "title": "5. Review your attempt history",
+          "audience": "Student",
+          "path": "/assessments/history",
+          "summary": "Every attempt is kept.",
+          "before": [
+            "At least one attempt."
+          ],
+          "steps": [
+            {
+              "do": "Click **History** in the menu."
+            },
+            {
+              "do": "Click **View result** on any attempt to see its score and skill breakdown."
+            }
+          ],
+          "result": [
+            "A record of your progress."
+          ],
+          "problems": [],
+          "next": "s-careers"
+        },
+        {
+          "id": "s-careers",
+          "title": "6. Explore careers and set goals",
+          "audience": "Student",
+          "path": "/careers",
+          "summary": "Find roles and mark the ones you want.",
+          "before": [
+            "Your admin has created career roles."
+          ],
+          "steps": [
+            {
+              "do": "Click **Careers** in the menu (**Career explorer**) and type in **Search roles** (for example Backend)."
+            },
+            {
+              "do": "Open a role to see **Required skills** (with required level and weight) and **My readiness for this role**."
+            },
+            {
+              "do": "Use **Add ... to my goals** to mark it as a goal. Your goals appear under **My goals** (reorder with the move buttons, then **Save goals**)."
+            },
+            {
+              "do": "Click **View skill gaps** to jump to the gaps for that role."
+            }
+          ],
+          "result": [
+            "One or more target roles."
+          ],
+          "problems": [],
+          "next": "s-readiness"
+        },
+        {
+          "id": "s-readiness",
+          "title": "7. See your readiness",
+          "audience": "Student",
+          "path": "/readiness",
+          "summary": "Overall and role-specific readiness, with evidence.",
+          "before": [
+            "Skill scores from at least one assessment, and an active readiness rule."
+          ],
+          "steps": [
+            {
+              "do": "Click **Readiness** in the menu (**Placement readiness**)."
+            },
+            {
+              "do": "Choose a **Career role** and click **Compute / refresh**."
+            },
+            {
+              "do": "Read the level and score, the category breakdown, the skill scores behind it, and the rule version. **Readiness history** shows earlier results."
+            }
+          ],
+          "result": [
+            "Your readiness level for that role, fully explained."
+          ],
+          "problems": [
+            {
+              "problem": "'Not enough evidence yet'.",
+              "fix": "Go back to **Assessments** and take ones covering that role's skills, then Compute / refresh again."
+            }
+          ],
+          "next": "s-gaps"
+        },
+        {
+          "id": "s-gaps",
+          "title": "8. Read your skill gaps",
+          "audience": "Student",
+          "path": "/readiness/gaps",
+          "summary": "Required level versus your level, ranked.",
+          "before": [
+            "Readiness computed for the role."
+          ],
+          "steps": [
+            {
+              "do": "Click **Skill gaps** in the menu and choose the role."
+            },
+            {
+              "do": "For each skill read the required level, your current level, the gap and its priority: High, Medium or Low."
+            }
+          ],
+          "result": [
+            "Know exactly what to improve first."
+          ],
+          "problems": [
+            {
+              "problem": "'Compute your readiness for this role first'.",
+              "fix": "Open **Readiness** and click Compute / refresh for that role."
+            }
+          ],
+          "next": "s-plan"
+        },
+        {
+          "id": "s-plan",
+          "title": "9. Generate and follow your 30-day plan",
+          "audience": "Student",
+          "path": "/plan",
+          "summary": "Weekly items built from your gaps and approved learning resources.",
+          "before": [
+            "Readiness computed for a role",
+            "Approved learning resources for your gap skills."
+          ],
+          "steps": [
+            {
+              "do": "Click **Plan** in the menu (**30-day plan**)."
+            },
+            {
+              "do": "Choose the **Role** (or **All roles**) and **Skills per week**, then click **Generate 30-day plan**."
+            },
+            {
+              "do": "Work through each week. On each item set its status to **To do**, **In progress** or **Done**."
+            },
+            {
+              "do": "After finishing items and new assessments, click **Refresh readiness (reassess)** to compare your new level (**Reassessment comparison**)."
+            },
+            {
+              "do": "To start over click **Generate a new plan** and confirm; earlier plans stay under **Plan history**."
+            }
+          ],
+          "result": [
+            "A concrete weekly study plan and a measured before/after."
+          ],
+          "problems": [
+            {
+              "problem": "A skill has no resource.",
+              "fix": "Tell your faculty or admin. Plans never invent resources."
+            }
+          ],
+          "next": "s-interview"
+        },
+        {
+          "id": "s-interview",
+          "title": "10. Practise a mock interview",
+          "audience": "Student",
+          "path": "/interview",
+          "summary": "Rubric-scored practice; it is feedback, not a prediction.",
+          "before": [
+            "Interview questions have been added by your college."
+          ],
+          "steps": [
+            {
+              "do": "Click **Interview** in the menu (**Mock interview**)."
+            },
+            {
+              "do": "Choose a **Role** and **Number of questions (1-10)**, then click **Start**."
+            },
+            {
+              "do": "Type an answer for each question; **Question navigator** moves between them."
+            },
+            {
+              "do": "Click **Finish interview** and confirm **Finish this interview?**.",
+              "expect": "A result page with a score and feedback per question against the rubric."
+            },
+            {
+              "do": "Earlier sessions are listed under **Interview history**."
+            }
+          ],
+          "result": [
+            "Practice feedback per question."
+          ],
+          "problems": [
+            {
+              "problem": "No questions for a role.",
+              "fix": "Your admin must add interview questions for it."
+            }
+          ],
+          "next": "s-resume"
+        },
+        {
+          "id": "s-resume",
+          "title": "11. Upload and analyse your resume",
+          "audience": "Student",
+          "path": "/resume",
+          "summary": "See which of your college's skills your resume shows, linked to the source text.",
+          "before": [
+            "A PDF or DOCX resume of up to 10 MB with selectable text."
+          ],
+          "steps": [
+            {
+              "do": "Click **Resume** in the menu, choose the **Resume file** and click **Upload resume**."
+            },
+            {
+              "do": "On the uploaded resume click **Analyze**."
+            },
+            {
+              "do": "Optionally choose a **Target role**, a **Compare with a job posting**, or paste a **Job description**, then click **Run analysis**."
+            },
+            {
+              "do": "Read the results: **Sections found**, skills **Found in resume** and **Missing from resume**, and (if you compared) the **Job description match**. Click a skill to highlight where it appears in your text."
+            },
+            {
+              "do": "Use **Delete resume** to remove a resume."
+            }
+          ],
+          "result": [
+            "Evidence-linked findings; nothing is invented."
+          ],
+          "problems": [
+            {
+              "problem": "Upload rejected.",
+              "fix": "Only PDF and DOCX up to 10 MB; scanned images are not read (no OCR)."
+            }
+          ],
+          "next": "s-jobs"
+        },
+        {
+          "id": "s-jobs",
+          "title": "12. Check jobs and eligibility",
+          "audience": "Student",
+          "path": "/jobs",
+          "summary": "Open postings, with eligibility shown separately from readiness.",
+          "before": [
+            "Academic records filled in; jobs published by your college."
+          ],
+          "steps": [
+            {
+              "do": "Click **Jobs** in the menu."
+            },
+            {
+              "do": "Use **Search** (title, company or role) and the **Eligibility** filter."
+            },
+            {
+              "do": "Read each job's badge: **Meets configured criteria**, **Does not meet configured criteria**, **Some data missing** or **No automatic criteria**."
+            },
+            {
+              "do": "Open a job to see each rule marked **Met**, **Not met** or **Unknown** with the numbers compared, plus **skill fit** against the job's required skills."
+            }
+          ],
+          "result": [
+            "Clarity on which jobs you meet the rules for and which skills to add."
+          ],
+          "problems": [
+            {
+              "problem": "Unknown on a criterion.",
+              "fix": "That record is missing; complete it under Academics. Unknown is not a failure."
+            }
+          ],
+          "next": "s-dashboard"
+        },
+        {
+          "id": "s-dashboard",
+          "title": "13. Use your dashboard",
+          "audience": "Student",
+          "path": "/dashboard",
+          "summary": "Everything in one place.",
+          "before": [],
+          "steps": [
+            {
+              "do": "Click **Dashboard** in the menu."
+            },
+            {
+              "do": "Read **Role readiness**, **Top skill gaps**, **Career goals** and **Recent assessments**; use **Quick links** to jump to the next action."
+            }
+          ],
+          "result": [
+            "Your next best step."
+          ],
+          "problems": [
+            {
+              "problem": "A panel says there is not enough evidence.",
+              "fix": "That is honest, not an error: take assessments for that area."
+            }
+          ],
+          "next": "s-assistant"
+        },
+        {
+          "id": "s-assistant",
+          "title": "14. Ask the Assistant and search knowledge",
+          "audience": "Student",
+          "path": "/assistant",
+          "summary": "Answers from your own results and approved documents, with citations.",
+          "before": [],
+          "steps": [
+            {
+              "do": "Click **Assistant** in the menu."
+            },
+            {
+              "do": "Type **Your question**, optionally choose a **Career role** or **Job**, and click **Ask**. **Example questions** give ideas."
+            },
+            {
+              "do": "Read the answer: readiness and eligibility appear in separate sections and quoted material has citations."
+            },
+            {
+              "do": "To read the sources yourself click **Knowledge**, type in **Search** and click **Search**."
+            }
+          ],
+          "result": [
+            "Cited answers. The Assistant does not use a language model in this version."
+          ],
+          "problems": [
+            {
+              "problem": "'I don't have enough approved information to answer this confidently.'",
+              "fix": "No approved document covers it. Ask an admin to upload and approve one."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "staff",
+      "title": "Faculty, TPO and HOD",
+      "procedures": [
+        {
+          "id": "t-placement",
+          "title": "TPO: use the placement dashboard",
+          "audience": "TPO or Admin",
+          "path": "/placement",
+          "summary": "College-wide readiness and placement analytics.",
+          "before": [
+            "Students have profiles and assessment attempts."
+          ],
+          "steps": [
+            {
+              "do": "Click **Placement dashboard** in the menu."
+            },
+            {
+              "do": "Use the **Department** filter and **Refresh**."
+            },
+            {
+              "do": "Read the summary (students, profiles complete, with a readiness score, with a submitted assessment) and the analytics: role readiness, company eligibility counts and progress trends."
+            }
+          ],
+          "result": [
+            "Where to focus preparation. Levels and counts only, never probabilities."
+          ],
+          "problems": [],
+          "next": "t-jobs"
+        },
+        {
+          "id": "t-jobs",
+          "title": "TPO: manage companies and jobs",
+          "audience": "TPO or Admin",
+          "path": "/admin/jobs",
+          "summary": "Same screens as the Admin placement steps.",
+          "before": [],
+          "steps": [
+            {
+              "do": "Follow the Admin procedures **8. Add companies** and **9. Create a job with skills and eligibility, then publish**."
+            }
+          ],
+          "result": [
+            "Jobs students can see with eligibility."
+          ],
+          "problems": []
+        },
+        {
+          "id": "f-dashboard",
+          "title": "Faculty: support your assigned students",
+          "audience": "Faculty",
+          "path": "/faculty",
+          "summary": "Your assigned students only.",
+          "before": [
+            "An admin has assigned students to you."
+          ],
+          "steps": [
+            {
+              "do": "Click **Faculty dashboard** in the menu."
+            },
+            {
+              "do": "Read the summary: **Assigned students**, **With a readiness score**, **Needing support**."
+            },
+            {
+              "do": "In the table sort by **Needs support** and read the reasons next to each flag.",
+              "detail": "'Needs support' is a rule-based flag (no readiness score, not enough evidence, or a High-priority gap), not a prediction."
+            },
+            {
+              "do": "Use the authoring pages (Assessments, Question bank, Learning resources, Interview questions, Knowledge base) to fix the gaps you see."
+            }
+          ],
+          "result": [
+            "Know who needs help and why."
+          ],
+          "problems": [
+            {
+              "problem": "The table is empty.",
+              "fix": "No students are assigned to you yet; ask the operator."
+            }
+          ]
+        },
+        {
+          "id": "h-dashboard",
+          "title": "HOD: review your departments",
+          "audience": "HOD",
+          "path": "/hod",
+          "summary": "Aggregates only for your assigned departments.",
+          "before": [
+            "An admin has assigned your departments."
+          ],
+          "steps": [
+            {
+              "do": "Click **HOD dashboard** in the menu."
+            },
+            {
+              "do": "Choose the **Department** and read counts, averages and the skill heatmap. Individual student records are never shown."
+            }
+          ],
+          "result": [
+            "Department-level picture."
+          ],
+          "problems": [
+            {
+              "problem": "The dashboard is empty.",
+              "fix": "Ask the admin to add your departments under HOD assignments."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reference",
+      "title": "Reference",
+      "procedures": [
+        {
+          "id": "r-terms",
+          "title": "What the numbers and labels mean",
+          "audience": "Everyone",
+          "path": null,
+          "summary": "A glossary of every score, level and status.",
+          "before": [],
+          "steps": [],
+          "terms": [
+            {
+              "term": "Skill score",
+              "meaning": "Your result on assessment questions for a skill, calculated with the assessment's scoring rules (including negative marking if set)."
+            },
+            {
+              "term": "Readiness (overall / role)",
+              "meaning": "A weighted combination of skill scores using your college's active readiness rule, shown with the rule version."
+            },
+            {
+              "term": "Level",
+              "meaning": "The band your score falls into, from the college's level thresholds."
+            },
+            {
+              "term": "Not enough evidence yet",
+              "meaning": "Too few relevant assessment results to give a trustworthy score. Take more assessments."
+            },
+            {
+              "term": "Gap",
+              "meaning": "max(required level - your level, 0)."
+            },
+            {
+              "term": "Priority High / Medium / Low",
+              "meaning": "Derived from the college's gap thresholds."
+            },
+            {
+              "term": "Eligibility",
+              "meaning": "A comparison of your academic records with a job's rules. Per criterion: Met, Not met or Unknown (missing data). Overall: Meets configured criteria, Does not meet configured criteria, Some data missing, or No automatic criteria."
+            },
+            {
+              "term": "Skill fit",
+              "meaning": "How your skills match a job's required skills. Not the same as eligibility."
+            },
+            {
+              "term": "Citation",
+              "meaning": "The approved document and passage an Assistant answer or search result came from."
+            },
+            {
+              "term": "Needs support",
+              "meaning": "A rule-based flag on the faculty dashboard, not a prediction."
+            }
+          ],
+          "result": [],
+          "problems": []
+        },
+        {
+          "id": "r-limits",
+          "title": "What is not in this version",
+          "audience": "Everyone",
+          "path": null,
+          "summary": "Known limits so nothing surprises you.",
+          "before": [],
+          "steps": [],
+          "terms": [
+            {
+              "term": "Language-model answers",
+              "meaning": "Not available. The Assistant is rule-based and cites approved documents."
+            },
+            {
+              "term": "Semantic search",
+              "meaning": "Not available. Knowledge search is keyword-based."
+            },
+            {
+              "term": "OCR",
+              "meaning": "Not available. Scanned PDFs and images are not read."
+            },
+            {
+              "term": "Some admin screens",
+              "meaning": "There is still no screen to add departments after install; that uses the API (/api/v1/admin/departments). There is also no way to deactivate a user from a screen yet."
+            },
+            {
+              "term": "Email notifications",
+              "meaning": "Only password reset (when email is configured)."
+            },
+            {
+              "term": "Payments",
+              "meaning": "None."
+            }
+          ],
+          "result": [],
+          "problems": []
+        }
+      ]
+    }
+  ]
+}
