@@ -1,0 +1,21 @@
+# Throwaway PostgreSQL for the backend test suite (same major version + pgvector as production).
+# Start:  docker compose -f docker-compose.test.yml up -d
+# Run:    cd backend && pytest            (the default TEST_DATABASE_URL points at this container)
+# Data lives in memory and fsync is off, so it is fast and disposable. Never use these settings for real data.
+services:
+  test-db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: gradnexa_test
+    ports:
+      - "127.0.0.1:5434:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    command: ["postgres", "-c", "fsync=off", "-c", "synchronous_commit=off", "-c", "full_page_writes=off"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test -d gradnexa_test"]
+      interval: 3s
+      timeout: 3s
+      retries: 20

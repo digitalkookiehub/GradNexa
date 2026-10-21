@@ -225,7 +225,8 @@ npm run dev
 docker-compose up -d
 
 # Tests
-pytest backend/tests -v
+docker compose -f docker-compose.test.yml up -d   # test PostgreSQL (once)
+cd backend && pytest -v
 cd frontend && npm test
 
 # Linting

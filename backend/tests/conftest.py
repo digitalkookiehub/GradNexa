@@ -1,7 +1,16 @@
-"""Test fixtures: in-memory SQLite DB, TestClient, college and role users."""
+"""Test fixtures: PostgreSQL (the production database), TestClient, college and role users.
+
+Each test runs inside a transaction that is rolled back afterwards, so tests are isolated and fast.
+Start the throwaway database with ``docker compose -f docker-compose.test.yml up -d`` or point
+TEST_DATABASE_URL at any PostgreSQL server (the database is created if it does not exist).
+"""
 import os
 
-os.environ["DATABASE_URL"] = "sqlite://"
+# Test-only credentials for the throwaway container in docker-compose.test.yml.
+DEFAULT_TEST_DATABASE_URL = "postgresql://test:test@127.0.0.1:5434/gradnexa_test"
+TEST_DATABASE_URL = os.environ.get("TEST_DATABASE_URL", DEFAULT_TEST_DATABASE_URL)
+
+os.environ["DATABASE_URL"] = TEST_DATABASE_URL
 os.environ["SECRET_KEY"] = "test-secret-key-not-for-production"
 os.environ["RATE_LIMIT_ENABLED"] = "false"
 os.environ["SMTP_HOST"] = ""
@@ -12,8 +21,9 @@ from collections.abc import Callable, Generator  # noqa: E402
 import pytest  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
 from sqlalchemy import Engine, create_engine, text  # noqa: E402
-from sqlalchemy.orm import Session, sessionmaker  # noqa: E402
-from sqlalchemy.pool import StaticPool  # noqa: E402
+from sqlalchemy.engine import make_url  # noqa: E402
+from sqlalchemy.exc import OperationalError  # noqa: E402
+from sqlalchemy.orm import Session  # noqa: E402
 
 from app.auth.security import create_access_token, hash_password  # noqa: E402
 from app.database import get_db  # noqa: E402
@@ -22,20 +32,39 @@ from app.models import Base, College, User, UserRole  # noqa: E402
 
 PASSWORD = "Password123!"
 
+_HELP = (
+    "Cannot reach the test PostgreSQL at {url}.\n"
+    "Start it with:  docker compose -f docker-compose.test.yml up -d\n"
+    "or set TEST_DATABASE_URL to a PostgreSQL server you can create databases on."
+)
 
-TEST_DATABASE_URL = os.environ.get("TEST_DATABASE_URL")
+
+def _ensure_database(url: str) -> None:
+    """Create the test database if the server is up but the database does not exist yet."""
+    target = make_url(url)
+    try:
+        create_engine(target, pool_pre_ping=True).connect().close()
+        return
+    except OperationalError:
+        pass
+    admin = create_engine(target.set(database="postgres"), isolation_level="AUTOCOMMIT")
+    try:
+        with admin.connect() as conn:
+            exists = conn.execute(
+                text("SELECT 1 FROM pg_database WHERE datname = :n"), {"n": target.database}
+            ).scalar()
+            if not exists:
+                conn.execute(text(f'CREATE DATABASE "{target.database}"'))
+    except OperationalError:
+        pytest.exit(_HELP.format(url=target.render_as_string(hide_password=True)), returncode=2)
+    finally:
+        admin.dispose()
 
 
 @pytest.fixture(scope="session")
-def pg_engine() -> Generator[Engine | None, None, None]:
-    """Optional real-database engine: set TEST_DATABASE_URL (e.g. Postgres) to use it.
-
-    The schema is created once per session; tables are truncated between tests.
-    Without TEST_DATABASE_URL the suite uses per-test in-memory SQLite.
-    """
-    if not TEST_DATABASE_URL:
-        yield None
-        return
+def pg_engine() -> Generator[Engine, None, None]:
+    """Engine for the test database; the schema is created once and dropped at the end."""
+    _ensure_database(TEST_DATABASE_URL)
     engine = create_engine(TEST_DATABASE_URL, pool_pre_ping=True)
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
@@ -45,28 +74,21 @@ def pg_engine() -> Generator[Engine | None, None, None]:
 
 
 @pytest.fixture
-def db(pg_engine: Engine | None) -> Generator[Session, None, None]:
-    """Fresh database per test (in-memory SQLite, or TEST_DATABASE_URL when set)."""
-    if pg_engine is not None:
-        session = sessionmaker(bind=pg_engine, autoflush=False)()
+def db(pg_engine: Engine) -> Generator[Session, None, None]:
+    """A session wrapped in an outer transaction that is rolled back after the test.
+
+    ``session.commit()`` inside a test only releases a SAVEPOINT, so the data is visible to the
+    app during the test and gone afterwards.
+    """
+    connection = pg_engine.connect()
+    outer = connection.begin()
+    session = Session(bind=connection, autoflush=False, join_transaction_mode="create_savepoint")
+    try:
         yield session
-        session.rollback()
+    finally:
         session.close()
-        tables = ", ".join(f'"{t.name}"' for t in Base.metadata.sorted_tables)
-        with pg_engine.begin() as conn:
-            conn.execute(text(f"TRUNCATE {tables} RESTART IDENTITY CASCADE"))
-        return
-    engine = create_engine(
-        "sqlite://",
-        connect_args={"check_same_thread": False},
-        poolclass=StaticPool,
-    )
-    Base.metadata.create_all(engine)
-    session = sessionmaker(bind=engine, autoflush=False)()
-    yield session
-    session.close()
-    Base.metadata.drop_all(engine)
-    engine.dispose()
+        outer.rollback()
+        connection.close()
 
 
 @pytest.fixture

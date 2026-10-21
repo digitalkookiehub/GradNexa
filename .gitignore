@@ -37,13 +37,9 @@ Thumbs.db
 backups/
 *.log
 
-# Local databases and dumps (contain user data and password hashes)
-*.db
-*.sqlite
-*.sqlite3
-*.sqlite-backup
+# Database dumps and stray local database files (contain user data and password hashes)
 *.dump
-backend/dev.db*
+*.db
 
 # Local-only tooling and reference files
 screenshots/

@@ -171,7 +171,7 @@ def update_resource(
 def delete_resource(db: Session, actor: User, resource_id: int) -> None:
     """Delete a resource (plan items referencing it keep their text, resource set to null)."""
     res = get_resource(db, actor.college_id, resource_id)
-    # Detach plan items explicitly (portable across SQLite and PostgreSQL).
+    # Detach plan items explicitly so they keep their text without the resource.
     for item in db.execute(
         select(LearningPlanItem).where(
             LearningPlanItem.resource_id == res.id,

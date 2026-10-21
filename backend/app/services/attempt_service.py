@@ -39,7 +39,7 @@ def _now() -> datetime:
 
 
 def _aware(dt: datetime) -> datetime:
-    """SQLite returns naive datetimes; treat them as UTC."""
+    """Defensive: treat a naive datetime as UTC (columns are timezone-aware in PostgreSQL)."""
     return dt if dt.tzinfo is not None else dt.replace(tzinfo=UTC)
 
 

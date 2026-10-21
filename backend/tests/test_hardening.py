@@ -165,5 +165,5 @@ def test_cors_origins_parse_from_environment(
 ) -> None:
     """Regression: a comma-separated CORS_ORIGINS in the real environment used to crash startup."""
     monkeypatch.setenv("CORS_ORIGINS", raw)
-    cfg = Settings(_env_file=None, DATABASE_URL="sqlite://", SECRET_KEY="x")  # type: ignore[call-arg]
+    cfg = Settings(_env_file=None, DATABASE_URL="postgresql://u:p@localhost/db", SECRET_KEY="x")  # type: ignore[call-arg]
     assert cfg.cors_origins_list == expected

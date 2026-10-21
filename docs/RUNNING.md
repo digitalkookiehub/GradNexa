@@ -14,6 +14,14 @@ uvicorn app.main:app --reload --port 8000
 
 Checks: `ruff check . && mypy app && pytest --cov=app --cov-fail-under=80`
 
+The backend tests run on **PostgreSQL** (the production database; there is no SQLite). Start the throwaway test database first:
+
+```bash
+docker compose -f docker-compose.test.yml up -d     # Postgres 16 + pgvector on 127.0.0.1:5434, in memory
+cd backend && pytest                                # ~1 minute; each test is rolled back
+```
+To use another server set `TEST_DATABASE_URL` (the database is created if it does not exist).
+
 ## Frontend (local)
 
 ```bash

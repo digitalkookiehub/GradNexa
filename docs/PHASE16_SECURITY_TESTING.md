@@ -1,7 +1,7 @@
 # Phase 16 - Testing and Security Hardening
 
 ## Added
-- `BCRYPT_ROUNDS` setting (default 12; tests use 4). Full backend suite: ~16-23 min -> ~1 min on SQLite, ~5.5 min on Postgres.
+- `BCRYPT_ROUNDS` setting (default 12; tests use 4). Full backend suite: ~16-23 min -> ~1 min. (The suite later moved to PostgreSQL only with rollback-per-test isolation; it still takes about 1 minute.)
 - Production config guard (`ENVIRONMENT=production`): the app refuses to start if SECRET_KEY is < 32 chars or a placeholder, rate limiting is off, BCRYPT_ROUNDS < 10, or CORS contains `*`.
 - Security headers on every API response: `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Cache-Control: no-store`.
 - `tests/test_security_sweep.py`: generated from the live route table. Every non-public `/api/v1` route must return 401 without a token; a malformed token never passes; every `/admin` route returns 403 for a student. New endpoints added without auth fail this test.

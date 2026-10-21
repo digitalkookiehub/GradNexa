@@ -27,7 +27,7 @@ _DUMMY_HASH = hash_password("not-a-real-password")
 
 
 def _aware(value: datetime) -> datetime:
-    """Treat naive datetimes (e.g. from SQLite) as UTC."""
+    """Defensive: treat a naive datetime as UTC (columns are timezone-aware in PostgreSQL)."""
     return value if value.tzinfo else value.replace(tzinfo=UTC)
 
 
